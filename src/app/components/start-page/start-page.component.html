@@ -1,0 +1,63 @@
+<main>
+  <div class="s1_upslide flex center">
+    <div class="field">
+      <img src="/assets/table.png">
+      <div class="button flex column">
+        <p class="text">Прогрессируй с нами</p>
+        <div class="small-btn clr1"><p>Записаться на занятие</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s1_centerslide flex center">
+    <div class="field flex column padding10">
+      <p class="text">Учи времена с нами</p>
+      <div class="time-zone flex row center">
+        <div id="card-container" class="time-container flex row center">
+          <div class="time-card flex center" (click)="addChosen(time)" [class.chosen]="isTimeChosen(time)" *ngFor="let time of this.times">
+            <p>{{time}}</p>
+          </div>
+        </div>
+        <svg style="width: 20%; height: 20%;" (click)="moveright()" class="left-arrow" viewBox="0 0 59 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.8417 30.7477C10.3939 30.3498 10.3939 29.6502 10.8417 29.2523L27.8359 14.1576C28.4809 13.5847 29.5 14.0426 29.5 14.9052L29.5 45.0948C29.5 45.9574 28.4809 46.4153 27.8359 45.8424L10.8417 30.7477Z" fill="black"/>
+          <rect x="25.6" y="34.2425" width="8.48485" height="23.4" rx="1" transform="rotate(-90 25.6 34.2425)" fill="black"/>
+          <rect x="0.5" y="59.5" width="59" height="58" rx="29" transform="rotate(-90 0.5 59.5)" stroke="black"/>
+        </svg>
+        <svg style="width: 20%; height: 20%;" (click)="moveleft()" class="right-arrow" viewBox="0 0 59 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M48.1583 29.2523C48.6061 29.6502 48.6061 30.3498 48.1583 30.7477L31.1641 45.8424C30.5191 46.4153 29.5 45.9574 29.5 45.0948L29.5 14.9052C29.5 14.0426 30.5191 13.5847 31.1641 14.1576L48.1583 29.2523Z" fill="black"/>
+          <rect x="33.4" y="25.7575" width="8.48485" height="23.4" rx="1" transform="rotate(90 33.4 25.7575)" fill="black"/>
+          <rect x="58.5" y="0.5" width="59" height="58" rx="29" transform="rotate(90 58.5 0.5)" stroke="black"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="s1_bottomslide flex center">
+    <div class="field flex column center">
+      <p class="text">Пора перейти к основной игре</p>
+
+      <div [routerLink]="['/pre-play', getTimesID()]" class="big-btn clr1 flex center">
+        <p>Играть</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="s1_finalslide flex center">
+    <div class="field s12_table">
+      <div class="s12_left-slide flex column">
+        <p class="s12_text">©Все права защищены</p>
+      </div>
+      <div align="center" class="s12_center-slide">
+        <img src="/assets/logo.png">
+      </div>
+      <div class="s12_right-slide flex column space-around" >
+        <ul class="s12_contact_table flex column center">
+          <li>Позвоните или напишите</li>
+          <li>+7 289 993-01-30</li>
+          <li>art.eng@gmail.com</li>
+        </ul>
+        <p class="s12_policy">Политика конфиденциальности</p>
+      </div>
+    </div>
+  </div>
+</main>

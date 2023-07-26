@@ -1,0 +1,12 @@
+<div class="s5_main flex center">
+  <div class="field flex center column">
+
+    <p class="text">Выберите время, которое хотите выучить.</p>
+    <div class="times_container flex row wrap center">
+      <div class="time_card flex center" (click)="learn(time)" *ngFor="let time of allTimes;">
+        <p>{{time}}</p>
+      </div>
+    </div>
+
+  </div>
+</div>

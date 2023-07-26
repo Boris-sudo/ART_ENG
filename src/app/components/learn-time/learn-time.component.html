@@ -1,0 +1,83 @@
+<div class="s6_main flex center">
+  <div class="field flex column left">
+    <p class="title">{{this.Rule?.time}}</p>
+
+    <p class="subtitle">Когда используется <b>{{time_name}}</b></p>
+    <ul class="uses_table">
+      <li *ngFor="let rule of Rule?.whenUses; let i=index">
+        <p class="text">{{i+1}}) {{rule}}</p>
+      </li>
+    </ul>
+
+    <p class="subtitle">Образование <b>{{time_name}}</b></p>
+
+    <div class="dark-back ">
+      <p class="important-header">❕❕Надо знать</p>
+      <ul class="important-table">
+        <li *ngFor="let i of Rule.rules">
+          <p>{{i}}</p>
+        </li>
+      </ul>
+    </div>
+
+    <p class="mtext">
+      <span class="sign">+</span>
+      Утвердительные предложения
+    </p>
+    <table class="making-table table_centered table_bordered">
+      <tbody>
+      <tr>
+        <td><p style="font-weight: bold;">Пример утвержительного предложения</p></td>
+        <td><p style="font-weight: bold;">Структура утвержительного предложения</p></td>
+      </tr>
+      <tr *ngFor="let timer of Rule?.Positive?.rule; let i=index">
+        <td><p>{{timer}}</p></td>
+        <td><p>{{(Rule?.Positive?.sentence ? Rule.Positive.sentence[i]??'' : '')}}</p></td>
+      </tr>
+      </tbody>
+    </table>
+    <p class="mtext">
+      <span style="padding: 1px 8px !important;" class="sign">-</span>
+      Отрицательные предложения
+    </p>
+    <table class="making-table table_centered table_bordered">
+      <tbody>
+      <tr>
+        <td><p style="font-weight: bold;">Пример отрицательного предложения</p></td>
+        <td><p style="font-weight: bold;">Структура отрицательного предложения</p></td>
+      </tr>
+      <tr *ngFor="let timer of Rule?.Negative?.rule; let i=index">
+        <td><p>{{timer}}</p></td>
+        <td><p>{{(Rule?.Negative?.sentence ? Rule.Negative.sentence[i]??'' : '')}}</p></td>
+      </tr>
+      </tbody>
+    </table>
+    <p class="mtext">
+      <span class="sign">?</span>
+      Вопросительные предложения
+    </p>
+    <table class="making-table table_centered table_bordered">
+      <tbody>
+      <tr>
+        <td><p style="font-weight: bold;">Пример вопросительного предложения</p></td>
+        <td><p style="font-weight: bold;">Структура вопросительного предложения</p></td>
+      </tr>
+      <tr *ngFor="let timer of Rule?.Question?.rule; let i=index">
+        <td><p>{{timer}}</p></td>
+        <td><p>{{(Rule?.Question?.sentence ? Rule.Question.sentence[i]??'' : '')}}</p></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <p class="subtitle">Слова маркеры <b>{{time_name}}</b></p>
+    <ul class="uses_table">
+      <li *ngFor="let rule of Rule?.timeWords; let i=index">
+        <p class="text">{{i+1}}) {{rule}}</p>
+      </li>
+    </ul>
+
+    <div [routerLink]="['/pre-play', getLink()]" class="play-button table_centered">
+      <p>Тренировать <b>{{time_name}}</b></p>
+    </div>
+  </div>
+</div>

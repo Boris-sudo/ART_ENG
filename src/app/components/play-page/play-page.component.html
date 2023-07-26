@@ -1,0 +1,72 @@
+<div class="s4_main flex center">
+  <div class="field">
+
+    <div class="s4_header flex row center">
+      <p>Заполните все ячейки</p>
+      <svg style="width: max(10px,min(4vw, 40px)); height: max(10px,min(4vw, 40px));" viewBox="0 0 57 56" fill="none"
+           xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M28.5 0C12.7965 0 0 12.4171 0 27.6551C0 42.893 12.7965 55.3101 28.5 55.3101C44.2035 55.3101 57 42.893 57 27.6551C57 12.4171 44.2035 0 28.5 0ZM26.3625 16.593C26.3625 15.4592 27.3315 14.5189 28.5 14.5189C29.6685 14.5189 30.6375 15.4592 30.6375 16.593V30.4206C30.6375 31.5544 29.6685 32.4947 28.5 32.4947C27.3315 32.4947 26.3625 31.5544 26.3625 30.4206V16.593ZM31.122 39.768C30.9795 40.1275 30.78 40.4041 30.5235 40.6806C30.2385 40.9295 29.925 41.1231 29.583 41.2614C29.241 41.3996 28.8705 41.4826 28.5 41.4826C28.1295 41.4826 27.759 41.3996 27.417 41.2614C27.075 41.1231 26.7615 40.9295 26.4765 40.6806C26.22 40.4041 26.0205 40.1275 25.878 39.768C25.7355 39.4361 25.65 39.0766 25.65 38.7171C25.65 38.3576 25.7355 37.9981 25.878 37.6662C26.0205 37.3343 26.22 37.0301 26.4765 36.7536C26.7615 36.5047 27.075 36.3111 27.417 36.1728C28.101 35.8963 28.899 35.8963 29.583 36.1728C29.925 36.3111 30.2385 36.5047 30.5235 36.7536C30.78 37.0301 30.9795 37.3343 31.122 37.6662C31.2645 37.9981 31.35 38.3576 31.35 38.7171C31.35 39.0766 31.2645 39.4361 31.122 39.768Z"
+          fill="black"/>
+      </svg>
+    </div>
+
+    <div class="s4_game-part flex column center">
+      <div class="s4_game-card flex column space-around wrap">
+        <p>Время:</p>
+        <div class="flex row1 space-around">
+          <input *ngFor="let time of this.times" value="{{time}}" disabled>
+        </div>
+      </div>
+      <div class="s4_game-card flex column space-around wrap">
+        <p>Самое важное в структуре:
+          <span style="position:relative;">
+            <span (click)="showHint(1)" class="rounded-icon">❔</span>
+            <div class="hint" id="hint1">
+              <p style="font-size: .5em; text-align: center;">В поле для ввода введите, что самое важное в структуре каждого их времени</p>
+              <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Форма to be + глагол + окончание</p>
+            </div>
+          </span>
+        </p>
+        <div class="flex row1 space-around">
+          <input [id]="'structure'+time" *ngFor="let time of this.times" placeholder="Введите самое важное в структуре">
+        </div>
+      </div>
+      <div class="s4_game-card flex column space-around wrap">
+        <p>Предложение:
+          <span style="position:relative;">
+            <span (click)="showHint(2)" class="rounded-icon">❔</span>
+            <div class="hint flex center" id="hint2">
+              <p style="font-size: .5em; text-align: center;">Из данного вам списка выберите предложения, в котром используется такое же время, как и выбранное вами</p>
+            </div>
+          </span>
+        </p>
+        <div class="flex row1 space-around">
+          <div class="select-width" *ngFor="let time of this.times; let i = index;">
+            <select [id]="'sentence'+time">
+              <option *ngFor="let sentence of sentences[i]">{{sentence}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="s4_game-card flex column space-around wrap">
+        <p>
+          Слово характеризующее время:
+          <span style="position:relative;">
+            <span (click)="showHint(3)" class="rounded-icon">❔</span>
+            <div class="hint" id="hint3">
+              <p style="font-size: .5em; text-align: center;">В поле для ввода впишите слово, которое характеризиует выбранное вами время наиболее обще.</p>
+              <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Present Continuous - сейчас</p>
+            </div>
+          </span>
+        </p>
+        <div class="flex row1 space-around">
+          <input [id]="'word'+time" *ngFor="let time of this.times" placeholder="">
+        </div>
+      </div>
+
+      <button (click)="play()" class="clr1 big-btn flex center"><p>Играть</p></button>
+    </div>
+
+  </div>
+</div>

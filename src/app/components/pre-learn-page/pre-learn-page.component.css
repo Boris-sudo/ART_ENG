@@ -1,0 +1,42 @@
+.s5_main {
+  padding: 10vh 10px 0;
+  box-sizing: border-box;
+  width: 100vw;
+}
+.field {
+  width: min(1400px, 100vw);
+}
+
+.text {
+  font-size: min(30px, 3.5vw);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 5%;
+}
+.times_container {
+  grid-row-gap: 50px;
+  grid-column-gap: 50px;
+}
+.time_card {
+  width: fit-content;
+  height: min(75px, 9vw);
+  padding: 10px 15px;
+  border-radius: 10px;
+  vertical-align: center;
+  text-align: center;
+  color: #ffffff;
+  background: #FFD6E1;
+
+  transition-duration: .5s;
+}
+.time_card:hover {
+  box-shadow: 0 0 10px #ff7b9a;
+  transform: scale(110%);
+}
+.time_card p {
+  width: min-content;
+  line-height: 100%;
+  text-align: center;
+  font-size: min(3vw, 25px);
+  font-weight: 500;
+}

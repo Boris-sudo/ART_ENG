@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com);
+@import url('https://fonts.cdnfonts.com/css/kanit');
+
+html, body { height: 100%; }
+body { overflow-x: hidden; }
+body, p, div, a, h1,ul {
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+}
+p,a {
+  line-height: 100%;
+}
+li { list-style-type: none; }
+* { user-select: none; }
+*::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+input :active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
+.mat-body p, .mat-body-1 p, .mat-typography p {
+  margin: 0;
+}
+
+
+/* some classes-styles */
+.flex {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+.row { flex-direction: row; }
+.column { flex-direction: column; }
+.space-between { justify-content: space-between; }
+.space-around { justify-content: space-around; }
+.center { justify-content: center; }
+.left { align-items: flex-start!important; align-content: flex-start!important; }
+.wrap { flex-wrap: wrap; }

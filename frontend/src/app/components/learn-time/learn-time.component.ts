@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 @Component({
   selector: 'app-learn-time',
   templateUrl: './learn-time.component.html',
-  styleUrls: ['./learn-time.component.css']
+  styleUrls: ['./learn-time.component.css', '../../../styles.css']
 })
 export class LearnTimeComponent implements OnInit {
   public Rule: LearnTimeModel={

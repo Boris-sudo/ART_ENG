@@ -1,4 +1,5 @@
 .header {
+  z-index: 800;
   position: fixed;
   width:100%;
   height: 60px!important;
@@ -99,6 +100,13 @@
   .open-menu { display: block!important; }
 }
 
+.user-icon {
+  --width: 40px;
+  width: var(--width);
+  height: var(--width);
+  border-radius: 100%;
+  border: 1px solid #000;
+}
 
 /* mobile version */
 .logo {
@@ -134,16 +142,55 @@
 .mobile-font {
   z-index: 819;
 
-  width: 100vw;
+  width: calc(100vw + 3px);
   height: 100vh;
 
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
 
   display: none;
   background: rgba(0,0,0,0);
   transition-duration: 500ms;
+}
+.mobile-menu-table {
+  margin-top: 100px;
+  padding: 0 0 0 10px;
+}
+.mobile-menu-table li:last-child {
+  margin-bottom: 0!important;
+}
+.mobile-menu-table li {
+  font-size: 1.33em;
+  color: #7e7e7e;
+  margin-bottom: 30px;
+}
+.profile-btn {
+  width: 100%;
+  height: 40px;
+  font-size: 1.33em;
+  border-radius: 10px;
+}
+.top-bar {
+  top: 0;
+  left:0;
+  position: absolute;
+  width: calc(100% + 500px);
+  height: 60px;
+  background: linear-gradient(90deg, #FEC9D9 0%, #FC98B2 100%);
+}
+.mobile-container {
+  padding: 0 10px;
+}
+
+.btn-clr1 {
+  color: #fff;
+  background: linear-gradient(90deg, #FEC9D9 0%, #FC98B2 100%);
+}
+.btn-clr2 {
+  color: #FC98B2;
+  border: 1px solid #FC98B2;
+  background: #fff;
 }
 
 /* variables */

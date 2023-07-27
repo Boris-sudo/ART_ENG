@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {PlayService} from "../../services/play.service";
-import {PlayModel} from "../../models/playModel";
+import {PlayService} from "../../../services/play.service";
+import {PlayModel} from "../../../models/playModel";
 import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
 
 @Component({
   selector: 'app-pre-play-page',
   templateUrl: './pre-play-page.component.html',
-  styleUrls: ['./pre-play-page.component.css'],
+  styleUrls: ['./pre-play-page.component.css', '../../../../styles.css'],
 })
 export class PrePlayPageComponent implements OnInit {
   public allTimes:string[] = [
@@ -52,7 +52,8 @@ export class PrePlayPageComponent implements OnInit {
       var codeI1 = timesIDs[i].charCodeAt(charCodeI1) - code0;
       var codeI2 = timesIDs[i+1].charCodeAt(charCodeI2) - code0;
       let id = codeI1 * 10 + codeI2;
-      this.chosenTimes.push(this.allTimes[id]);
+      if (this.chosenTimes.length<3)
+        this.chosenTimes.push(this.allTimes[id]);
     }
   }
 
@@ -93,6 +94,6 @@ export class PrePlayPageComponent implements OnInit {
 
   play(): void {
     this.playService.setGame(this.chosenTimes, this.selectedLevel);
-    this.router.navigate(['/play', this.getIndexes()]);
+    this.router.navigate(['/game/menu', this.getIndexes()]);
   }
 }

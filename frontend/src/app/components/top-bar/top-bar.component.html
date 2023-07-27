@@ -14,11 +14,11 @@
   <div class="header__centerslide">
     <ul class="navigation">
       <li [routerLink]="['/pre-learn']" class="navigation-list-item"><p>Обучение</p></li>
-      <li [routerLink]="['/pre-play', '-1']" class="navigation-list-item"><p>Играть</p></li>
+      <li (click)="go('/pre-play')" class="navigation-list-item"><p>Играть</p></li>
     </ul>
   </div>
   <div class="header__rightslide">
-    <div class="flex row">
+    <div *ngIf="!this.User.is_registered" class="flex row">
       <button (click)="go_to_login('register')" class="btn clr1">
         <p>Зарегистрироваться</p>
       </button>
@@ -26,10 +26,15 @@
         <p>Войти</p>
       </button>
     </div>
+    <div *ngIf="this.User.is_registered">
+      <div class="user-icon">
+
+      </div>
+    </div>
   </div>
   <div class="header_padding40px"></div>
 
-  <img class="logo" src="/static/assets/logo.png">
+  <img (click)="go('')" class="logo" src="/static/assets/logo.png">
   <div class="open-menu">
     <svg id="open-menu-svg" (click)="open_menu()" width="40" height="40" viewBox="0 0 35 27" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="35" height="3" fill="white"/>
@@ -41,5 +46,18 @@
 
 
 
-<div id="menu" class="mobile-menu"></div>
+<div id="menu" class="mobile-menu">
+  <div class="top-bar"></div>
+  <div class="mobile-container">
+    <ul class="mobile-menu-table">
+      <li (click)="go('/pre-learn')">Обучение</li>
+      <li (click)="go('/pre-play')">Играть</li>
+    </ul>
+
+    <hr style="margin-top: 7vh; margin-bottom: 5vh; color: #a8a8a8;">
+
+    <div class="profile-btn btn-clr1 flex center">Профиль</div>
+    <div (click)="logout()" style="margin-top: 10px;" class="profile-btn btn-clr2 flex center">Выйти</div>
+  </div>
+</div>
 <div (click)="close_menu()" id="dop-menu" class="mobile-font"></div>

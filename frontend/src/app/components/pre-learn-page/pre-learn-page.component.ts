@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 @Component({
   selector: 'app-pre-learn-page',
   templateUrl: './pre-learn-page.component.html',
-  styleUrls: ['./pre-learn-page.component.css']
+  styleUrls: ['./pre-learn-page.component.css', '../../../styles.css']
 })
 export class PreLearnPageComponent implements OnInit {
   public allTimes:string[] = [

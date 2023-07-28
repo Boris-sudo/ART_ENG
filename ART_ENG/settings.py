@@ -175,23 +175,3 @@ MEDIA_ROOT = BASE_DIR / "files"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-SD_API = {
-    "host": os.getenv("SD_API_HOST", ""),
-    "port": 7860
-}
-
-SD_USER = 2
-
-
-Q_CLUSTER = {
-    'name': 'DjangORM',
-    'workers': 4,
-    'timeout': 90,
-    'retry': 120,
-    'queue_limit': 50,
-    'bulk': 10,
-    'orm': 'default',
-    'sync': DEBUG,
-}

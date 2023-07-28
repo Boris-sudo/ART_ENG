@@ -103,13 +103,25 @@ WSGI_APPLICATION = 'ART_ENG.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'ATOMIC_REQUESTS': True,
+if os.environ.get('DB_TYPE', 'sqlite') == 'mysql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('MYSQL_NAME', None),
+            'USER': os.environ.get('MYSQL_USER', None),
+            'PASSWORD': os.environ.get('MYSQL_PASSWORD', None),
+            'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
+            'PORT': os.environ.get('MYSQL_PORT', '3306'),
+            'ATOMIC_REQUESTS': True,
+        }
     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+            'ATOMIC_REQUESTS': True,
+        }
 }
 
 

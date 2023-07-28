@@ -90,6 +90,7 @@ export class TopBarComponent implements OnInit {
 				console.log(error);
 			}
 		)
+		window.location.reload();
 	}
 	open_profile_menu() {
 		// @ts-ignore

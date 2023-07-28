@@ -10,6 +10,7 @@ import {LoginPageComponent} from "./components/login-page/login-page.component";
 import {EasyLevelPageComponent} from "./components/play/levels/easy-level-page/easy-level-page.component";
 import {MediumLevelPageComponent} from "./components/play/levels/medium-level-page/medium-level-page.component";
 import {HardLevelPageComponent} from "./components/play/levels/hard-level-page/hard-level-page.component";
+import {PaymentComponent} from "./components/payment/payment.component";
 
 const routes: Routes = [
   {path: '', component: StartPageComponent},

@@ -288,20 +288,19 @@ export class LearnTimeServiceService {
       whenUses: [
         "Действия, произошедшие до другого действия в прошлом",
         "Действия, результат которых был виден в прошлом",
-        "C конструкцией I wish, когда также сожалеем о прошлом",
       ],
 
       Positive: {
         sentence: ["мест (I) + had + Ved/V3","мест (we, you, they) + had + Ved/V3","мест (he, she, it) + had + Ved/V3"],
-        rule: ["I had played tennis by 9 pm.","They had played tennis by 9 pm.","He had played tennis by 9 pm."],
+        rule: ["I had played tennis before the class started.","They had played tennis before the class started.","He had played tennis before the class started."],
       },
       Negative: {
         sentence: ["мест (I) + had + not + Ved/V3","мест (we, you, they) + had + not + Ved/V3","мест (he, she, it) + had + not + Ved/V3"],
-        rule: ["I had not played tennis by 9 pm.","They had not played tennis by 9 pm.","He had not played tennis by 9 pm."],
+        rule: ["I had not played tennis before the class started.","They had not played tennis before the class started.","He had not played tennis before the class started."],
       },
       Question: {
         sentence: ["Had + мест (I) + Ved/V3?","Had + мест (we, you, they) + Ved/V3?","Had + мест (he, she, it) + Ved/V3?"],
-        rule: ["Had I played tennis by 9 pm?","Had they played tennis by 9 pm?","Had he played tennis by 9 pm?"],
+        rule: ["Had I played tennis before the class started?","Had they played tennis before the class started?","Had he played tennis before the class started?"],
       },
 
       rules: [
@@ -358,15 +357,15 @@ export class LearnTimeServiceService {
 
       Positive: {
         sentence: ["мест + will + V"],
-        rule: ["He will play tennis tomorrow morning."],
+        rule: ["He will play tennis tomorrow."],
       },
       Negative: {
         sentence: ["мест + will + not + V"],
-        rule: ["He will not play tennis tomorrow morning."],
+        rule: ["He will not play tennis tomorrow."],
       },
       Question: {
         sentence: ["Will + мест. + V"],
-        rule: ["Will he play tennis tomorrow morning?"],
+        rule: ["Will he play tennis tomorrow?"],
       },
 
       rules: [
@@ -396,15 +395,15 @@ export class LearnTimeServiceService {
 
       Positive: {
         sentence: ["мест + will be + Ving"],
-        rule: ["He will be playing tennis."],
+        rule: ["He will be playing tennis tomorrow morning."],
       },
       Negative: {
         sentence: ["мест + will + not + be + Ving"],
-        rule: ["They will not be playing tennis."],
+        rule: ["They will not be playing tennis tomorrow morning."],
       },
       Question: {
         sentence: ["Will + мест + be + Ving"],
-        rule: ["Will that be playing tennis?"],
+        rule: ["Will they be playing tennis tomorrow morning?"],
       },
 
       rules: [
@@ -461,15 +460,15 @@ export class LearnTimeServiceService {
 
       Positive: {
         sentence: ["мест + will + have been + Ving"],
-        rule: ["He will have been playing tennis for 3 hours."],
+        rule: ["He will have been playing tennis for 3 hours tomorrow."],
       },
       Negative: {
         sentence: ["мест + will + not + have been + Ving"],
-        rule: ["He will not have been playing tennis for 3 hours."],
+        rule: ["He will not have been playing tennis for 3 hours tomorrow."],
       },
       Question: {
         sentence: ["Will + мест + have been + Ving"],
-        rule: ["Will he have been playing tennis?"],
+        rule: ["Will he have been playing tennis tomorrow?"],
       },
 
       rules: [

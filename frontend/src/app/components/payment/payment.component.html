@@ -1,0 +1,39 @@
+
+<div class="modal">
+    <div class="side">
+        <div class="skew">
+            <h3>Оплатите чтобы получить полный доступ к функционалу сайта</h3>
+            <div class="btn"><p style="color: #fff;">Total Price: ₽500</p></div>
+        </div>
+    </div>
+    <div class="header">
+        <h1>Enter Payment Details</h1>
+    </div>
+    <div class="form">
+        <form>
+            <fieldset class="number">
+                <label>Card Number</label>
+                <input id="card-number1" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                <input id="card-number2" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                <input id="card-number3" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                <input id="card-number4" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+            </fieldset>
+            <fieldset class="name">
+                <label>Cardholder Name</label>
+                <input id="card-name" type="text"/>
+            </fieldset>
+            <fieldset class="exp">
+                <label>Expiration</label>
+                <div>
+                    <input id="card-expiration-mon" style="width: 50px;" maxlength="2">
+                    <input id="card-expiration-year" style="width: 100px;" maxlength="4">
+                </div>
+            </fieldset>
+            <fieldset class="ccv">
+                <label for="ccv">CCV</label>
+                <input id="ccv" type="num" maxlength="3"/>
+            </fieldset>
+            <button (click)="confirm()" type="button">Confirm And Pay</button>
+        </form>
+    </div>
+</div>

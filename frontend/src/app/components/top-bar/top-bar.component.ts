@@ -28,6 +28,7 @@ export class TopBarComponent implements OnInit {
 	ngOnInit(): void {
 		this.profile_service.get().subscribe(
 			response => {
+				console.log(response);
 				this.User={
 					username: response.username,
 					email: response.email,
@@ -83,13 +84,31 @@ export class TopBarComponent implements OnInit {
 		const data = "";
 		this.logout_api.post(data).subscribe(
 			response => {
-				this.User = {
-					is_registered: false,
-				}
-				this.close_menu();
-			}, error => {
+				console.log(response);
+			},
+			error => {
 				console.log(error);
 			}
 		)
+	}
+	open_profile_menu() {
+		// @ts-ignore
+		console.log(document.getElementById('profile-menu').style.height);
+		// @ts-ignore
+		if (document.getElementById('profile-menu').style.height==''||document.getElementById('profile-menu').style.height=='0px') {
+			// @ts-ignore
+			document.getElementById('profile-menu').style.display='block';
+			setTimeout(function() {
+				// @ts-ignore
+				document.getElementById('profile-menu').style.height='var(--height)';
+			}, 10)
+		} else {
+			// @ts-ignore
+			document.getElementById('profile-menu').style.height='0px';
+			setTimeout(function() {
+				// @ts-ignore
+				document.getElementById('profile-menu').style.display='none';
+			}, 500)
+		}
 	}
 }

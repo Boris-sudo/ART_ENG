@@ -15,9 +15,9 @@ const routes: Routes = [
   {path: '', component: StartPageComponent},
 
   {path: 'game/menu/:timesID', component: PlayPageComponent},
-  {path: 'game/easy/', component: EasyLevelPageComponent},
-  {path: 'game/medium/', component: MediumLevelPageComponent},
-  {path: 'game/hard/', component: HardLevelPageComponent},
+  {path: 'game/easy', component: EasyLevelPageComponent},
+  {path: 'game/medium', component: MediumLevelPageComponent},
+  {path: 'game/hard', component: HardLevelPageComponent},
   {path: 'pre-play/:timesID', component: PrePlayPageComponent},
 
   {path: 'pre-learn', component: PreLearnPageComponent},

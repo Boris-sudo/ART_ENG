@@ -34,6 +34,9 @@
 
   transition-duration: .5s;
 }
+.time_card:hover {
+  background: #fcc6d3;
+}
 .time_card.chosen {
   box-shadow: 0 0 10px #ff7b9a;
   transform: scale(110%);

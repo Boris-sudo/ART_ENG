@@ -19,17 +19,22 @@
   </div>
   <div class="header__rightslide">
     <div *ngIf="!this.User.is_registered" class="flex row">
-      <button (click)="go_to_login('register')" class="btn clr1">
+      <button [routerLink]="['/register']" class="btn clr1">
         <p>Зарегистрироваться</p>
       </button>
-      <button (click)="go_to_login('login')" class="btn clr2">
+      <button [routerLink]="['/login']" class="btn clr2">
         <p>Войти</p>
       </button>
     </div>
-    <div *ngIf="this.User.is_registered">
+    <div (click)="this.open_profile_menu()" *ngIf="this.User.is_registered">
       <div class="user-icon">
 
       </div>
+    </div>
+    <div id="profile-menu" class="open-icon-menu">
+      <p [routerLink]="['/profile']">Профиль</p>
+      <hr>
+      <p (click)="logout()">Выйти</p>
     </div>
   </div>
   <div class="header_padding40px"></div>

@@ -92,6 +92,29 @@
 .clr2:hover {
   background: rgba(0,0,0,10%);
 }
+.open-icon-menu {
+  display: none;
+  height: 0px;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  --height: 150px;
+  width: 200px;
+  background: #ffffff;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  font-size: 1.4em;
+  border-radius: 15px;
+  transition-duration: .4s;
+  overflow: hidden;
+  padding: 1em 10px;
+}
+.open-icon-menu {
+  text-align: start;
+}
+.open-icon-menu p {
+  padding: 5px 0;
+}
 @media screen and (max-width: 900px) {
   .header__leftslide { display: none!important; }
   .header__centerslide { display: none!important; }
@@ -182,6 +205,8 @@
 .mobile-container {
   padding: 0 10px;
 }
+
+
 
 .btn-clr1 {
   color: #fff;

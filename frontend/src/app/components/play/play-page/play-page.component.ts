@@ -122,8 +122,6 @@ export class PlayPageComponent implements OnInit {
 			if ((word[i] != " " && word[i] != "-") && (word[i] < 'а' || word[i] > 'я')) continue;
 			new_word += word[i];
 		}
-		console.log(new_word, word)
-		console.log(this.timeSentencesService.words[this.indexes[ind]]);
 
 
 		for (let i = 0; i < this.timeSentencesService.words[this.indexes[ind]].length; i++)
@@ -179,15 +177,8 @@ export class PlayPageComponent implements OnInit {
 			data.values?.push(word);
 		}
 
-		this.gameApi.post(data).subscribe(
-			response => {
-				console.log(response);
-			},
-			error => {
-				console.log(error);
-			}
-		)
+		document.cookie="answer="+data.values+";path:/game";
 
-		this.router.navigate(['/game/easy-level'])
+		this.router.navigate(['/game/easy']);
 	}
 }

@@ -1,0 +1,117 @@
+.all-field {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+}
+.container {
+
+}
+
+.r-btn {
+    margin-bottom: 2em;
+    box-shadow: none;
+    color: #3a3a3a;
+    font-weight: lighter;
+    font-size: 1.1em;
+    padding: .5em 5em;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    transition-duration: .5s;
+}
+.r-btn:hover {
+    transform: scale(110%);
+}
+.r-btn__google {
+    background: #fff;
+}
+.r-btn.r-btn__icon .svg-icon {
+    vertical-align: baseline;
+    margin-right: 10px;
+    transition: opacity 200ms;
+}
+.bc-black-3, .bc-black-100 {
+    border-color: #CED1D4 !important;
+}
+.bar-md {
+    border-radius: 6px !important;
+}
+.ba {
+    border-style: solid;
+    border-width: 1px !important;
+}
+.bc-black {
+    border-color: black;
+}
+
+.login-box {
+    padding: 1.5em 2em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.login-form .card {
+    margin-bottom: 1em;
+}
+.login-form .card .text {
+    font-size: 1.2em;
+    font-family: 'Raleway', sans-serif;
+    margin: 0 0 5px 0;
+    font-weight: bolder;
+}
+.login-form .card input {
+    box-sizing: border-box;
+    padding: 0 5px;
+    height: 2.5em;
+    border-radius: 5px;
+    border: 1px solid #c7c7c7;
+    width: 100%;
+    font-size: 1em;
+    font-weight: bolder;
+}
+.sign-in-btn {
+    padding: .8em 1em;
+    box-sizing: border-box;
+    margin-top: .8em;
+    width: 100%;
+    background: #0c94ff;
+    font-size: 1.3em;
+    color: #000;
+    border-radius: 10px;
+}
+.sign-in-btn p {
+    width: 100%;
+    text-align: center;
+}
+.addon-text {
+    text-align: center;
+    width: 100%;
+}
+.addon-text a {
+    color: #0c94ff;
+    text-decoration: underline;
+}
+
+.active-input {
+    border: 1px solid #e42112 !important;
+    box-shadow: 0 0 5px rgba(228, 33, 18, 0.56) !important;
+
+}
+.card-addon-text {
+    display: none;
+    margin: 0;
+    font-size: .8em;
+    color: #e42112;
+}
+
+
+input:active, :hover, :focus{
+    outline: 0;
+    outline-offset: 0;
+}
+.flex--item {
+    display: flex;
+}

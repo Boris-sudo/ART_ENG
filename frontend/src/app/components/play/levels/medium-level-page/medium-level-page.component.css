@@ -1,0 +1,131 @@
+.s4_main {
+    padding: 10vh 10px 0;
+}
+.field {
+    width: min(1400px, 100vw);
+}
+
+
+.s4_header {
+    width: 100%;
+
+    font-size: min(50px, 5vw);
+    font-weight: 600;
+
+    grid-column-gap: 1%;
+}
+
+
+.s4_game-part {
+    width: 100%;
+}
+.s4_game-card {
+    margin-top: 7vh;
+    width: 100%;
+    font-size: min(30px, 4vw);
+    grid-row-gap: 20px;
+}
+.s4_game-card p {
+    text-align: center;
+    font-weight: 500;
+}
+.s4_game-card input {
+    transition-duration: .2s;
+    background: transparent;
+    border: 1px solid #a8a8a8;
+    border-radius: 15px;
+    font-size: .75em;
+    overflow-x: scroll;
+    padding: 10px 15px;
+    color: #DE6488;
+}
+.select-width {
+    transition-duration: .2s;
+    background: transparent;
+    border: 1px solid #a8a8a8;
+    border-radius: 15px;
+    overflow-x: scroll;
+}
+.select-width select {
+    min-width: 100%;
+    font-size: .75em;
+    overflow-x: scroll;
+    padding: 10px 15px;
+    color: #DE6488;
+    text-align: center;
+    border: 0;
+    width: fit-content;
+    background: transparent;
+}
+.row1 { grid-column-gap: 20px; grid-row-gap: 10px; width: 100%; }
+.row1 { flex-direction: row; }
+@media screen and (max-width: 700px) {
+    .row1 { flex-direction: column!important; }
+    .s4_game-card input, .select-width { font-size: 20px; }
+    .s4_game-card p { font-size: 20px;}
+}
+.s4_game-card input { width: min(400px, max(300px, 40%)) !important; box-sizing: border-box; }
+.s4_game-card .select-width { width: min(400px, max(300px, 40%)) !important; }
+
+
+.rounded-icon:hover {
+    padding: 8.5px 7.5px;
+    font-size: .8em;
+    background: #505050;
+}
+.rounded-icon {
+    position: relative;
+    transition-duration: .5s;
+    font-size: .7em;
+    margin-left: 5px;
+    background: black;
+    border: 1px;
+    padding: 6.5px 5.5px;
+    border-radius: 1000px;
+}
+
+.clr1 {
+    background: transparent;
+    border: 1px solid #a8a8a8;
+    color: #DE6488;
+    transition-duration: .5s;
+}
+.clr1:hover {
+    box-shadow: 0 0 10px #DE6488;
+    border-color: #DE6488;
+}
+.big-btn {
+    max-width: 70%;
+    margin-top: 1em;
+    margin-bottom: .5em;
+    padding: 1em 5em;
+
+    border-radius: 20px;
+
+    font-size: 2em;
+    font-weight: 500;
+}
+
+
+.hint {
+    min-width: 7em;
+    box-sizing: border-box;
+    padding: 10px 5px;
+    border-radius: 15px;
+
+    position: absolute;
+    display: none;
+    opacity: 0;
+
+    background: #000;
+    color: #fff;
+
+    vertical-align: baseline;
+    z-index: 150;
+
+    transition-duration: 1s;
+
+    top: 0;
+    right: 40px;
+}
+

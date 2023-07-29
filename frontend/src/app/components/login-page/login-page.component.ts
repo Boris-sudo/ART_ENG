@@ -31,6 +31,16 @@ export class LoginPageComponent implements OnInit {
 			username: username,
 			password: password,
 		}
+		// @ts-ignore
+		document.getElementById('background-font').style.display='block';
+		// @ts-ignore
+		document.getElementById('loader').style.display='block';
+		setTimeout(function() {
+			// @ts-ignore
+			document.getElementById('background-font').style.opacity='100%';
+			// @ts-ignore
+			document.getElementById('loader').style.opacity='100%';
+		}, 10)
 
 		this.login_service.create(data).subscribe(
 			response => {
@@ -40,7 +50,16 @@ export class LoginPageComponent implements OnInit {
 				}, 10);
 			},
 			error => {
-				console.log(error);
+				// @ts-ignore
+				document.getElementById('background-font').style.opacity='0';
+				// @ts-ignore
+				document.getElementById('loader').style.opacity='0';
+				// @ts-ignore
+				document.getElementById('background-font').style.display='none';
+				// @ts-ignore
+				document.getElementById('loader').style.display='none';
+
+				alert('Incorrect username or password')
 			}
 		);
 	}

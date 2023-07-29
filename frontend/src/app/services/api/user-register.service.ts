@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { UserRegister } from "../../models/api/user-register.model";
 
 
-const baseUrl = '/api/register/';
+const baseUrl = '/api/register';
 
 @Injectable({
   providedIn: 'root'

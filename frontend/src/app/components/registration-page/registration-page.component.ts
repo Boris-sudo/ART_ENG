@@ -6,62 +6,112 @@ import {UserRegisterService} from "../../services/api/user-register.service";
 import {ProfileApiService} from "../../services/api/profile.service";
 
 @Component({
-		selector: 'app-registration-page',
-		templateUrl: './registration-page.component.html',
-		styleUrls: ['./registration-page.component.css']
+	selector: 'app-registration-page',
+	templateUrl: './registration-page.component.html',
+	styleUrls: ['./registration-page.component.css']
 })
 export class RegistrationPageComponent implements OnInit {
 
-		constructor(
-				private router: Router,
-				private route: ActivatedRoute,
-				private registration_service: UserRegisterService,
-		) {
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private registration_service: UserRegisterService,
+	) {
+	}
+
+	ngOnInit(): void {
+	}
+
+
+	register(): void {
+
+		// @ts-ignore
+		var username = document.getElementById('username-input').value;
+		// @ts-ignore
+		var email = document.getElementById('email-input').value;
+		// @ts-ignore
+		var password1 = document.getElementById('password1-input').value;
+		// @ts-ignore
+		var password2 = document.getElementById('password2-input').value;
+
+		if (password2 != password1) {
+			// @ts-ignore
+			document.getElementById('password2-input').classList.add('active-input');
+			// @ts-ignore
+			document.getElementById('password2-addon-text').style.display = 'block';
+			// @ts-ignore
+			document.getElementById('password2-addon-text').innerText = 'Пароли не совпадают';
+		} else {
+			// @ts-ignore
+			document.getElementById('password2-input').classList.remove('active-input');
+			// @ts-ignore
+			document.getElementById('password2-addon-text').style.display = 'none';
 		}
 
-		ngOnInit(): void {
-		}
+		if (password2 == password1) {
+			// @ts-ignore
+			document.getElementById('background-font').style.display = 'block';
+			// @ts-ignore
+			document.getElementById('loader').style.display = 'block';
+			setTimeout(function () {
+				// @ts-ignore
+				document.getElementById('background-font').style.opacity = '100%';
+				// @ts-ignore
+				document.getElementById('loader').style.opacity = '100%';
+			}, 10)
 
+			const data: UserRegister = {
+				username: username,
+				email: email,
+				password: password1,
+			}
 
-		register(): void {
-				// @ts-ignore
-				var username = document.getElementById('username-input').value;
-				// @ts-ignore
-				var email = document.getElementById('email-input').value;
-				// @ts-ignore
-				var password1 = document.getElementById('password1-input').value;
-				// @ts-ignore
-				var password2 = document.getElementById('password2-input').value;
+			this.registration_service.create(data).subscribe(
+				response => {
+					window.location.reload();
+					this.router.navigate(['']);
+				},
+				error => {
 
-				if (password2 != password1) {
+					if (error.error.password != undefined) {
 						// @ts-ignore
-						document.getElementById('password2-input').classList.add('active-input');
+						document.getElementById('password1-input').classList.add('active-input');
 						// @ts-ignore
-						document.getElementById('password2-addon-text').style.display='block';
+						document.getElementById('password1-addon-text').style.display = 'block';
 						// @ts-ignore
-						document.getElementById('password2-addon-text').innerText='Пароли не совпадают';
-				} else {
+						document.getElementById('password1-addon-text').innerText = error.error.password[0];
+					} else {
 						// @ts-ignore
-						document.getElementById('password2-input').classList.remove('active-input');
+						document.getElementById('password1-input').classList.remove('active-input');
 						// @ts-ignore
-						document.getElementById('password2-addon-text').style.display='none';
+						document.getElementById('password1-addon-text').style.display = 'none';
+					}
+
+					if (error.error.username != undefined) {
+						// @ts-ignore
+						document.getElementById('username-input').classList.add('active-input');
+						// @ts-ignore
+						document.getElementById('username-addon-text').style.display = 'block';
+						// @ts-ignore
+						document.getElementById('username-addon-text').innerText = error.error.username[0];
+					} else {
+						// @ts-ignore
+						document.getElementById('username-input').classList.remove('active-input');
+						// @ts-ignore
+						document.getElementById('username-addon-text').style.display = 'none';
+					}
+					// @ts-ignore
+					document.getElementById('background-font').style.opacity = '0';
+					// @ts-ignore
+					document.getElementById('loader').style.opacity = '0';
+					// @ts-ignore
+					document.getElementById('background-font').style.display = 'none';
+					// @ts-ignore
+					document.getElementById('loader').style.display = 'none';
+
+					console.log(error);
 				}
-
-				if (password2 == password1) {
-						const data: UserRegister = {
-								username: username,
-								email: email,
-								password: password1,
-						}
-
-						this.registration_service.create(data).subscribe(
-								response => {
-										this.router.navigate(['']);
-								},
-								error => {
-										console.log(error);
-								}
-						);
-				}
+			);
 		}
+	}
 }

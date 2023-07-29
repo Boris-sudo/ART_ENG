@@ -19,27 +19,27 @@ export class LearnTimeServiceService {
 
       Positive: {
         sentence: [
-          "Мест. (I) + V",
-          "Мест. (we, you, they) + V",
+
+          "Мест. (I, we, you, they) + V",
           "Мест. (he, she, it) + Vs"
         ],
         rule: [
-          "I play tennis every weekend",
+
           "They play tennis every weekend",
           "He plays tennis every weekend"
         ],
       },
       Negative: {
         sentence: [
-          "Мест. (I) + do + not + V",
-          "Мест. (we, you, they) + do + not + V",
+
+          "Мест. (I, we, you, they) + do + not + V",
           "Мест. (he, she, it) + does + not + V"
         ],
-        rule: ["I do not play tennis every weekend", "They do not play tennis every weekend", "He does not play tennis every weekend"],
+        rule: [ "They do not play tennis every weekend", "He does not play tennis every weekend"],
       },
       Question: {
-        sentence: ["Do + мест. (I) + V", "Do + мест. (we, you, they) + V", "Does + мест. (he, she, it) + V"],
-        rule: ["Do I play tennis every weekend?","Do they play tennis every weekend?", "Does he play tennis every weekend?"],
+        sentence: [ "Do + мест. (I, we, you, they) + V", "Does + мест. (he, she, it) + V"],
+        rule: ["Do they play tennis every weekend?", "Does he play tennis every weekend?"],
       },
 
       rules: [
@@ -105,16 +105,16 @@ export class LearnTimeServiceService {
       ],
 
       Positive: {
-        sentence: ["Мест. (I) + have+ V3","Мест. (we, you, they) + have + V3","Мест. (he, she, it) + has + V3"],
-        rule: ["I have played tennis before","They have played tennis before","He has played tennis before"],
+        sentence: ["Мест. (I, we, you, they) + have + V3","Мест. (he, she, it) + has + V3"],
+        rule: ["They have played tennis before","He has played tennis before"],
       },
       Negative: {
-        sentence: ["Мест. (I) + have not + V3","Мест. (we, you, they) + have not + V3","Мест. (he, she, it)  + has not + V3"],
-        rule: ["I have not played tennis before","They have not played tennis before","He has not played tennis before"],
+        sentence: ["Мест. (I, we, you, they) + have not + V3","Мест. (he, she, it)  + has not + V3"],
+        rule: ["They have not played tennis before","He has not played tennis before"],
       },
       Question: {
-        sentence: ["Have + мест. (I) + V3","Have + мест. (we, you, they) + V3","Has + мест. (he, she, it)  + V3"],
-        rule: ["Have I played tennis before?","Have they played tennis before?","Has he played tennis before?"],
+        sentence: ["Have + мест. (I, we, you, they) + V3","Has + мест. (he, she, it)  + V3"],
+        rule: ["Have they played tennis before?","Has he played tennis before?"],
       },
 
       rules: [
@@ -144,16 +144,16 @@ export class LearnTimeServiceService {
       ],
 
       Positive: {
-        sentence: ["Мест. (I) + have/has been + Ving", "Мест. (we, you, they) + have/has been + Ving", "Мест. (he, she, it) + have/has been + Ving"],
-        rule: ["I have been playing tennis since 1997.","They have been playing tennis since 1997.","He has been playing tennis since 1997."],
+        sentence: [ "Мест. (I, we, you, they) + have/has been + Ving", "Мест. (he, she, it) + have/has been + Ving"],
+        rule: ["They have been playing tennis since 1997.","He has been playing tennis since 1997."],
       },
       Negative: {
-        sentence: ["Мест. (I) + have/has + not + been + Ving","Мест. (we, you, they) + have/has + not + been + Ving","Мест. (he, she, it) + have/has + not + been + Ving"],
-        rule: ["I have not been playing tennis since 1997.","They have not been playing tennis since 1997.","He has not been playing tennis since 1997."],
+        sentence: ["Мест. (I, we, you, they) + have/has + not + been + Ving","Мест. (he, she, it) + have/has + not + been + Ving"],
+        rule: ["They have not been playing tennis since 1997.","He has not been playing tennis since 1997."],
       },
       Question: {
-        sentence: ["Have/has + мест. (I) + been + Ving","Have/has + мест. (we, you, they) + been + Ving","Have/has + мест. (he, she, it) + been + Ving"],
-        rule: ["Have I been playing tennis since 1997?","Have they been playing tennis since 1997?","Has he been playing tennis since 1997?"],
+        sentence: ["Have/has + мест. (I, we, you, they) + been + Ving","Have/has + мест. (he, she, it) + been + Ving"],
+        rule: ["Have they been playing tennis since 1997?","Has he been playing tennis since 1997?"],
       },
 
       rules: [
@@ -176,36 +176,30 @@ export class LearnTimeServiceService {
 
       Positive: {
         sentence: [
-          "мест. (I) + Ved/V2",
-          "мест. (we, you, they) + Ved/V2",
+          "мест. (I, we, you, they) + Ved/V2",
           "мест. (he, she, it) + Ved/V2"
         ],
         rule: [
-          "I played tennis yesterday.",
           "They played tennis yesterday.",
           "He played tennis yesterday."
         ],
       },
       Negative: {
         sentence: [
-          "мест. (I) + did + not + V",
-          "мест. (we, you, they) + did + not + V",
+          "мест. (I, we, you, they) + did + not + V",
           "мест. (he, she, it) + did + not + V",
         ],
         rule: [
-          "I did not play tennis yesterday.",
           "They did not play tennis yesterday.",
           "He did not play tennis yesterday.",
         ],
       },
       Question: {
         sentence: [
-          "Did + мест. (I) + V",
-          "Did + мест. (we, you, they) + V",
+          "Did + мест. (I, we, you, they) + V",
           "Did + мест. (he, she, it) + V",
         ],
         rule: [
-          "Did I play tennis yesterday?",
           "Did they play tennis yesterday?",
           "Did he play tennis yesterday?",
         ],
@@ -234,36 +228,30 @@ export class LearnTimeServiceService {
 
       Positive: {
         sentence: [
-          "мест. (I) + was + Ving",
-          "мест. (we, you, they) + were + Ving",
+          "мест. (I, we, you, they) + were + Ving",
           "мест. (he, she, it) + was + Ving",
         ],
         rule: [
-          "I was playing tennis at that moment",
           "They were playing tennis at that moment",
           "He was playing tennis at that moment",
         ],
       },
       Negative: {
         sentence: [
-          "Was + мест (I). + Ving",
-          "Were + мест. (we, you, they) + Ving",
+          "Were + мест. (I, we, you, they) + Ving",
           "Was + мест. (he, she, it) + Ving",
         ],
         rule: [
-          "I was not playing tennis at that moment",
           "They were not playing tennis at that moment",
           "He was not playing tennis at that moment",
         ],
       },
       Question: {
         sentence: [
-          "Was + мест. (I) + Ving",
-          "Were + мест. (we, you, they) + Ving",
+          "Were + мест. (I, we, you, they) + Ving",
           "Was + мест. (he, she, it) + Ving",
         ],
         rule: [
-          "Were I playing tennis now?",
           "Were they playing tennis now?",
           "Was he playing tennis now?",
         ],
@@ -291,16 +279,16 @@ export class LearnTimeServiceService {
       ],
 
       Positive: {
-        sentence: ["мест (I) + had + Ved/V3","мест (we, you, they) + had + Ved/V3","мест (he, she, it) + had + Ved/V3"],
-        rule: ["I had played tennis before the class started.","They had played tennis before the class started.","He had played tennis before the class started."],
+        sentence: ["мест (I, we, you, they) + had + Ved/V3","мест (he, she, it) + had + Ved/V3"],
+        rule: ["They had played tennis before the class started.","He had played tennis before the class started."],
       },
       Negative: {
-        sentence: ["мест (I) + had + not + Ved/V3","мест (we, you, they) + had + not + Ved/V3","мест (he, she, it) + had + not + Ved/V3"],
-        rule: ["I had not played tennis before the class started.","They had not played tennis before the class started.","He had not played tennis before the class started."],
+        sentence: ["мест (I, we, you, they) + had + not + Ved/V3","мест (he, she, it) + had + not + Ved/V3"],
+        rule: ["They had not played tennis before the class started.","He had not played tennis before the class started."],
       },
       Question: {
-        sentence: ["Had + мест (I) + Ved/V3?","Had + мест (we, you, they) + Ved/V3?","Had + мест (he, she, it) + Ved/V3?"],
-        rule: ["Had I played tennis before the class started?","Had they played tennis before the class started?","Had he played tennis before the class started?"],
+        sentence: ["Had + мест (I, we, you, they) + Ved/V3?","Had + мест (he, she, it) + Ved/V3?"],
+        rule: ["Had they played tennis before the class started?","Had he played tennis before the class started?"],
       },
 
       rules: [
@@ -323,16 +311,16 @@ export class LearnTimeServiceService {
       ],
 
       Positive: {
-        sentence: ["мест (I) + had been + Ving","мест + had been + Ving","мест + had been + Ving"],
-        rule: ["He had been playing tennis for two hour.","He had been playing tennis for two hour.","He had been playing tennis for two hour."],
+        sentence: ["мест + had been + Ving"],
+        rule: ["He had been playing tennis for two hour."],
       },
       Negative: {
-        sentence: ["мест (I) + had + not + been + Ving","мест + had + not + been + Ving","мест + had + not + been + Ving"],
-        rule: ["He has not been playing tennis for two hours.","He has not been playing tennis for two hours.","He has not been playing tennis for two hours."],
+        sentence: ["мест + had + not + been + Ving"],
+        rule: ["He has not been playing tennis for two hours."],
       },
       Question: {
-        sentence: ["Had + мест. (I) + been + Ving?","Had + мест. + been + Ving?","Had + мест. + been + Ving?"],
-        rule: ["Had he been playing tennis for two hours?","Had he been playing tennis for two hours?","Had he been playing tennis for two hours?"],
+        sentence: ["Had + мест. + been + Ving?"],
+        rule: ["Had he been playing tennis for two hours?"],
       },
 
       rules: [

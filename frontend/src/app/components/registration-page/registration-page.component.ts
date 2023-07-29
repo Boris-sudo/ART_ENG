@@ -4,6 +4,7 @@ import {UserLoginService} from "../../services/api/user-login.service";
 import {UserRegister} from "../../models/api/user-register.model";
 import {UserRegisterService} from "../../services/api/user-register.service";
 import {ProfileApiService} from "../../services/api/profile.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
 	selector: 'app-registration-page',
@@ -16,6 +17,7 @@ export class RegistrationPageComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private registration_service: UserRegisterService,
+		private profile_service: ProfileApiService,
 	) {
 	}
 
@@ -68,8 +70,15 @@ export class RegistrationPageComponent implements OnInit {
 
 			this.registration_service.create(data).subscribe(
 				response => {
-					window.location.reload();
-					this.router.navigate(['']);
+					let date=new Date;
+					let timestamp=date.getTime();
+
+					this.profile_service.post(timestamp).subscribe(
+						response=>{
+							window.location.reload();
+							this.router.navigate(['']);
+						}, error=>{}
+					)
 				},
 				error => {
 

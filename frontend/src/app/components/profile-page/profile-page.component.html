@@ -30,8 +30,8 @@
         <div [class.noshow]="current_show!='payment-container'" class="payment">
             <h1>Платежная информация</h1>
             <h2>Дата последней оплаты</h2>
-            <p>12.05.2023</p>
-            <button class="btn--2 cl2">Продлить</button>
+            <p>{{getDate()}}</p>
+            <button class="btn--2 cl2" (click)="pay()">Продлить</button>
         </div>
     </div>
 </div>

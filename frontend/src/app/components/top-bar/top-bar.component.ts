@@ -30,6 +30,7 @@ export class TopBarComponent implements OnInit {
 			response => {
 				console.log(response);
 				this.User = {
+					date_paid: response.date_paid,
 					username: response.username,
 					email: response.email,
 					is_registered: true,

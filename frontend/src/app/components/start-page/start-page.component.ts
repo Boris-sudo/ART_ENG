@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, createUrlTreeFromSnapshot, Router} from "@angular/router";
 import {LearnTimeModel} from "../../models/LearnTimeModel";
 import {LearnTimeServiceService} from "../../services/learn-time-service.service";
 import {ProfileApiService} from "../../services/api/profile.service";
+import {UserModel} from "../../models/UserModel";
 
 @Component({
 	selector: 'app-start-page',
@@ -76,7 +77,9 @@ export class StartPageComponent implements OnInit {
 	public chosen: string[] = [];
 	public InputTimeName: string = '';
 	public InputTime: string = '';
-	public islogged: boolean = false;
+	public User: UserModel = {
+		is_registered: false,
+	};
 	public InputRule: LearnTimeModel = {
 		time: "Present Simple - «настоящее простое»",
 		whenUses: [
@@ -125,7 +128,16 @@ export class StartPageComponent implements OnInit {
 	ngOnInit(): void {
 		this.profileApi.get().subscribe(
 			response => {
-				this.islogged = true;
+				const current = new Date;
+				const timestamp = current.getTime();
+				this.User = {
+					date_paid: response.date_paid,
+					username: response.username,
+					email: response.email,
+					is_registered: true,
+					// @ts-ignore
+					is_valid_pay: ((response.date_paid - timestamp) / 86400) <= 30,
+				}
 			}, error => {
 			}
 		)
@@ -222,8 +234,13 @@ export class StartPageComponent implements OnInit {
 			document.getElementById('payment-page').style.opacity = '100%';
 		}, 10)
 	}
+	islogged():boolean {
+		if (this.User.is_registered||this.User.is_valid_pay)
+			return true;
+		return false;
+	}
 	openTime(time: string) {
-		if (!this.islogged&&(time!='Present Simple'&&time!='Present Continuous')) {
+		if (!this.islogged()&&(time!='Present Simple'&&time!='Present Continuous')) {
 			this.open_payment();
 			this.addChosen(time);
 			setTimeout(function(chosen, time) {

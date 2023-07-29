@@ -139,11 +139,13 @@ export class PlayPageComponent implements OnInit {
 		let valid:boolean = true;
 		for (let i = 0; i < this.times.length; i++) {
 			// @ts-ignore
-			let structure = document.getElementById('structure' + this.times[i]).value;
+			let structure:string = document.getElementById('structure' + this.times[i]).value;
 			// @ts-ignore
-			let sentence = document.getElementById('sentence' + this.times[i]).value;
+			let sentence:string = document.getElementById('sentence' + this.times[i]).value;
 			// @ts-ignore
-			let word = document.getElementById('word' + this.times[i]).value;
+			let word:string = document.getElementById('word' + this.times[i]).value;
+			structure=structure.toLowerCase();
+			word=word.toLowerCase();
 
 
 			if (!this.isCorrectStructure(structure, i)) {

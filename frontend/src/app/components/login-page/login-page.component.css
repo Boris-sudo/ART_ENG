@@ -17,7 +17,7 @@ p, h1, h2, h3, h4, h5, div, a, span, ul, li {
 }
 
 .background-font--black {
-    background: rgba(0,0,0,30%);
+    background: rgba(0, 0, 0, 30%);
     position: absolute;
     top: 0;
     width: 110vw;
@@ -28,6 +28,7 @@ p, h1, h2, h3, h4, h5, div, a, span, ul, li {
     opacity: 0;
     transition-duration: .3s;
 }
+
 .loader svg path,
 svg rect {
     fill: #ff6700;
@@ -37,6 +38,7 @@ svg rect {
     width: 40px;
     height: 40px;
 }
+
 .loader {
     transition-duration: .3s;
     opacity: 0;
@@ -127,7 +129,7 @@ svg rect {
     border: 1px solid #c7c7c7;
     width: 100%;
     font-size: 1em;
-    font-weight: bolder;
+    font-weight: normal;
 }
 
 .sign-in-btn {
@@ -137,7 +139,7 @@ svg rect {
     width: 100%;
     background: #0c94ff;
     font-size: 1.3em;
-    color: #000;
+    color: #fff;
     border-radius: 10px;
 }
 

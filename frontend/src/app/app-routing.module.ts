@@ -11,6 +11,7 @@ import {EasyLevelPageComponent} from "./components/play/levels/easy-level-page/e
 import {MediumLevelPageComponent} from "./components/play/levels/medium-level-page/medium-level-page.component";
 import {HardLevelPageComponent} from "./components/play/levels/hard-level-page/hard-level-page.component";
 import {PaymentComponent} from "./components/payment/payment.component";
+import {ProfilePageComponent} from "./components/profile-page/profile-page.component";
 
 const routes: Routes = [
   {path: '', component: StartPageComponent},
@@ -23,6 +24,8 @@ const routes: Routes = [
 
   {path: 'register', component: RegistrationPageComponent},
   {path: 'login', component: LoginPageComponent },
+
+  {path: 'profile', component: ProfilePageComponent },
 ];
 
 @NgModule({

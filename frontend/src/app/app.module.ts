@@ -17,6 +17,7 @@ import {EasyLevelPageComponent} from './components/play/levels/easy-level-page/e
 import {MediumLevelPageComponent} from './components/play/levels/medium-level-page/medium-level-page.component';
 import {HardLevelPageComponent} from './components/play/levels/hard-level-page/hard-level-page.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 @NgModule({
 	declarations: [
@@ -32,7 +33,8 @@ import { PaymentComponent } from './components/payment/payment.component';
 		EasyLevelPageComponent,
 		MediumLevelPageComponent,
 		HardLevelPageComponent,
-  PaymentComponent
+  PaymentComponent,
+  ProfilePageComponent
 	],
 	imports: [
 		HttpClientModule,

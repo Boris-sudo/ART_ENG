@@ -33,6 +33,7 @@
       </button>
     </div>
     <div id="profile-menu" class="open-icon-menu">
+      <p><b>{{User.username}}</b></p>
       <p [routerLink]="['/profile']">Профиль</p>
       <hr>
       <p (click)="logout()">Выйти</p>

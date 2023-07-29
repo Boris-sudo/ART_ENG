@@ -1,39 +1,15 @@
-
-<div class="modal">
-    <div class="side">
-        <div class="skew">
-            <h3>Оплатите чтобы получить полный доступ к функционалу сайта</h3>
-            <div class="btn"><p style="color: #fff;">Total Price: ₽500</p></div>
-        </div>
-    </div>
-    <div class="header">
-        <h1>Enter Payment Details</h1>
-    </div>
-    <div class="form">
-        <form>
-            <fieldset class="number">
-                <label>Card Number</label>
-                <input id="card-number1" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                <input id="card-number2" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                <input id="card-number3" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                <input id="card-number4" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-            </fieldset>
-            <fieldset class="name">
-                <label>Cardholder Name</label>
-                <input id="card-name" type="text"/>
-            </fieldset>
-            <fieldset class="exp">
-                <label>Expiration</label>
-                <div>
-                    <input id="card-expiration-mon" style="width: 50px;" maxlength="2">
-                    <input id="card-expiration-year" style="width: 100px;" maxlength="4">
-                </div>
-            </fieldset>
-            <fieldset class="ccv">
-                <label for="ccv">CCV</label>
-                <input id="ccv" type="num" maxlength="3"/>
-            </fieldset>
-            <button (click)="confirm()" type="button">Confirm And Pay</button>
-        </form>
+<div  class="background"></div>
+<svg (click)="close_open_menu()" class="close-icon" width="30" height="30" viewBox="0 0 44 44" style="fill: #ffffff" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2.32233 2.32233L42.3223 42.3223" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M2.32233 42.3223L42.3223 2.32234" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</svg>
+<div class="body">
+    <h1>
+        Заригестрируйтесь и олатите премиум, чтобы получить доступ к полной версии!
+    </h1>
+    <p>Получи доступ к полной версии <b>ArtEng</b> на всех девайсах, чтобы использовать все времена в игре и в обучении.</p>
+    <p class="payment">Стоимость: <b>₽499</b></p>
+    <div class="center">
+        <button class="button">Оплатить</button>
     </div>
 </div>

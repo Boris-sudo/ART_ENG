@@ -212,8 +212,19 @@ export class StartPageComponent implements OnInit {
 		}
 	}
 
+	open_payment() {
+		// @ts-ignore
+		document.getElementById('payment-page').style.display = 'block';
+		setTimeout(function () {
+			// @ts-ignore
+			document.getElementById('payment-page').style.transform = 'rotateX(0deg) translateZ(0)';
+			// @ts-ignore
+			document.getElementById('payment-page').style.opacity = '100%';
+		}, 10)
+	}
 	openTime(time: string) {
 		if (!this.islogged&&(time!='Present Simple'&&time!='Present Continuous')) {
+			this.open_payment();
 			this.addChosen(time);
 			setTimeout(function(chosen, time) {
 				for (let i = 0; i < chosen.length; ++i)

@@ -4,7 +4,7 @@
       <img src="/static/assets/table.png">
       <div class="button flex column">
         <p class="text">Прогрессируй с нами</p>
-        <div class="small-btn clr1"><p>Записаться на занятие</p></div>
+        <a style="text-decoration: none;" href="mailto:artenglish@internet.ru?subject=Вопрос по записи на занятие."><div class="small-btn clr1"><p>Записаться на занятие</p></div></a>
       </div>
     </div>
   </div>
@@ -62,3 +62,4 @@
 </main>
 
 <app-learn-time [Rule]="this.InputRule" [time]="this.InputTime" [time_name]="this.InputTimeName" id="learn-page" class="open-time-learn"></app-learn-time>
+<app-payment id="payment-page" class="payment"></app-payment>

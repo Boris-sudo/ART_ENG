@@ -14,16 +14,16 @@ export class PaymentComponent implements OnInit {
 
 	}
 
-	confirm() {
+	close_open_menu() {
 		// @ts-ignore
-		let number=document.getElementById('card-number1').value+document.getElementById('card-number2').value+document.getElementById('card-number3').value+document.getElementById('card-number4').value;
+		document.getElementById('payment-page').style.transform='rotateX(90deg)';
 		// @ts-ignore
-		let user=document.getElementById('card-name').value;
-		// @ts-ignore
-		let month=document.getElementById('card-expiration-mon').value;
-		// @ts-ignore
-		let year=document.getElementById('card-expiration-year').value;
-
-
+		document.getElementById('payment-page').style.opacity='0';
+		setTimeout(function() {
+			// @ts-ignore
+			document.getElementById('payment-page').style.display='none';
+		}, 500)
 	}
+
+	protected readonly close = close;
 }

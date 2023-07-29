@@ -101,6 +101,18 @@ main {
     background: #ff6559;
 }
 
+.payment {
+    opacity: 0;
+    display: none;
+    transform: rotateX(90deg);
+    background: rgba(0,0,0,40%);
+    transition-duration: .5s;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 .time-card {
     transition-duration: .3s;
     width: 20% !important;

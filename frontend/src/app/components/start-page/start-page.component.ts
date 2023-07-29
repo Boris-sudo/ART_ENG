@@ -231,7 +231,6 @@ export class StartPageComponent implements OnInit {
 					if (chosen[i] == time)
 						chosen.splice(i, 1);
 			}, 300, this.chosen, time);
-			console.log(this.chosen);
 			return;
 		}
 		this.InputTime = '';
@@ -257,7 +256,7 @@ export class StartPageComponent implements OnInit {
 			// @ts-ignore
 			document.getElementById('learn-page').style.transform = 'rotateX(0deg) translateZ(0)';
 			// @ts-ignore
-			document.getElementById('learn-page-background').style.opacity = '100%';
+			document.getElementById('learn-page').style.opacity = '100%';
 		}, 10)
 	}
 

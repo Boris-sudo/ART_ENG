@@ -91,7 +91,7 @@ export class LearnTimeComponent implements OnInit {
     // @ts-ignore
     document.getElementById('learn-page').style.transform='rotateX(90deg) translateZ(-50vh)';
     // @ts-ignore
-    document.getElementById('learn-page-background').style.opacity='0';
+    document.getElementById('learn-page').style.opacity='0';
     setTimeout(function() {
       // @ts-ignore
       document.getElementById('learn-page').style.display='none';

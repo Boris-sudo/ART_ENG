@@ -61,12 +61,12 @@ export class PlayPageComponent implements OnInit {
 
 		//getting random sentences for each time
 		for (let i = 0; i < this.times.length; i++) {
-			let random_sentence = getRandomInt(15);
+			let random_sentence = getRandomInt(6);
 			this.sentences[i].push(this.timeSentencesService.sentences[this.indexes[i]][random_sentence])
 			for (let j = 0; j < 4; j++) {
 				let random_time = getRandomInt(12);
 				while (random_time == this.indexes[i]) random_time = getRandomInt(12);
-				random_sentence = getRandomInt(15);
+				random_sentence = getRandomInt(6);
 				this.sentences[i].push(this.timeSentencesService.sentences[random_time][random_sentence]);
 			}
 			this.sentences[i].sort(() => Math.random() - 0.5);
@@ -124,6 +124,7 @@ export class PlayPageComponent implements OnInit {
 		}
 
 
+		console.log(this.timeSentencesService.words[this.indexes[ind]]);
 		for (let i = 0; i < this.timeSentencesService.words[this.indexes[ind]].length; i++)
 			if (this.timeSentencesService.words[this.indexes[ind]][i] == new_word)
 				return true;

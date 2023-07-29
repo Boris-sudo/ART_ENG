@@ -14,7 +14,7 @@ export class ProfileApiService {
   constructor(private http: HttpClient) { }
 
   post(data:any): Observable<any> {
-    return this.http.post(`${baseUrl}/`,data);
+    return this.http.post(`${baseUrl}`,data);
   }
 
   get(): Observable<Profile> {

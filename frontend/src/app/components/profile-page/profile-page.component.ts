@@ -28,7 +28,8 @@ export class ProfilePageComponent implements OnInit {
 		this.profile_service.get().subscribe(
 			response => {
 				this.User = {
-					date_paid: response.date_paid,
+					// @ts-ignore
+					date_paid: response.date_paid*1000,
 					username: response.username,
 					email: response.email,
 					is_registered: true,
@@ -40,6 +41,13 @@ export class ProfilePageComponent implements OnInit {
 
 	pay() {
 
+	}
+	getNextDate(): number {
+		let date=new Date();
+		let time=date.getTime();
+		// @ts-ignore
+		let result=(time-this.User.date_paid) / (60*60*24*100);
+		return Math.round(30-result);
 	}
 	getDate():string {
 		// @ts-ignore

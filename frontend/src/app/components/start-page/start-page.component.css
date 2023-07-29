@@ -199,6 +199,7 @@ main {
     display: table-cell;
     vertical-align: middle;
     align-items: center;
+    height: 80%;
 }
 
 .s12_center-slide img {
@@ -206,12 +207,9 @@ main {
 }
 
 .s12_right-slide {
-    display: table-cell;
-    vertical-align: middle;
-    height: 100%;
-    width: 15em;
-    margin: 0;
-    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .s12_right-slide li:not(:first-child) {

@@ -44,7 +44,7 @@ h1, p {
     --height: 250px;
     z-index: 1001;
     position: absolute;
-    --width: max(600px, min(70%, 400px));
+    --width: max(300px, min(70vw, 600px));
     width: var(--width);
     left: calc((100vw - var(--width)) / 2);
     top: calc((100vh - var(--height)) / 2);

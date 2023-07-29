@@ -70,15 +70,21 @@ export class RegistrationPageComponent implements OnInit {
 
 			this.registration_service.create(data).subscribe(
 				response => {
-					let date=new Date;
-					let timestamp=date.getTime();
+					setTimeout(function(profile_service, router) {
+						let date = new Date;
+						let timestamp = date.getTime();
 
-					this.profile_service.post(timestamp).subscribe(
-						response=>{
-							window.location.reload();
-							this.router.navigate(['']);
-						}, error=>{}
-					)
+						console.log(timestamp);
+						profile_service.post({"date_paid": timestamp/1000}).subscribe(
+							response => {
+								console.log(response);
+								window.location.reload();
+								router.navigate(['/profile']);
+							}, error => {
+								console.log(error);
+							}
+						)
+					}, 100, this.profile_service, this.router)
 				},
 				error => {
 
@@ -89,7 +95,8 @@ export class RegistrationPageComponent implements OnInit {
 						document.getElementById('password1-addon-text').style.display = 'block';
 						// @ts-ignore
 						document.getElementById('password1-addon-text').innerText = error.error.password[0];
-					} else {
+					}
+					else {
 						// @ts-ignore
 						document.getElementById('password1-input').classList.remove('active-input');
 						// @ts-ignore
@@ -103,7 +110,8 @@ export class RegistrationPageComponent implements OnInit {
 						document.getElementById('username-addon-text').style.display = 'block';
 						// @ts-ignore
 						document.getElementById('username-addon-text').innerText = error.error.username[0];
-					} else {
+					}
+					else {
 						// @ts-ignore
 						document.getElementById('username-input').classList.remove('active-input');
 						// @ts-ignore

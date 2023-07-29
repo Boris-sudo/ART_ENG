@@ -64,8 +64,10 @@
 
     <hr style="margin-top: 7vh; margin-bottom: 5vh; color: #a8a8a8;">
 
-    <div class="profile-btn btn-clr1 flex center">Профиль</div>
-    <div (click)="logout()" style="margin-top: 10px;" class="profile-btn btn-clr2 flex center">Выйти</div>
+    <div *ngIf="this.User.is_registered" (click)="go('/profile')" class="profile-btn btn-clr1 flex center">Профиль</div>
+    <div *ngIf="this.User.is_registered" (click)="logout()" style="margin-top: 10px;" class="profile-btn btn-clr2 flex center">Выйти</div>
+    <div *ngIf="!this.User.is_registered" (click)="go('/login')" class="profile-btn btn-clr1 flex center">Войти</div>
+    <div *ngIf="!this.User.is_registered" (click)="go('/register')" style="margin-top: 10px;" class="profile-btn btn-clr2 flex center">Зарегистрироваться</div>
   </div>
 </div>
 <div (click)="close_menu()" id="dop-menu" class="mobile-font"></div>

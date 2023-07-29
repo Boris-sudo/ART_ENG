@@ -26,7 +26,7 @@ export class LearnTimeServiceService {
         rule: [
 
           "They play tennis every weekend",
-          "He plays tennis every weekend"
+          "He plays tennis every weekend",
         ],
       },
       Negative: {

@@ -131,7 +131,8 @@ export class StartPageComponent implements OnInit {
 				const current = new Date;
 				const timestamp = current.getTime();
 				this.User = {
-					date_paid: response.date_paid,
+					// @ts-ignore
+					date_paid: response.date_paid*1000,
 					username: response.username,
 					email: response.email,
 					is_registered: true,

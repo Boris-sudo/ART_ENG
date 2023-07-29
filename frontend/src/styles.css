@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com);
 @import url('https://fonts.cdnfonts.com/css/kanit');
 
-html, body { height: 100%; }
+html, body { height: fit-content; width: 100vw; }
 body { overflow-x: hidden; }
 body, p, div, a, h1,ul {
   padding: 0;

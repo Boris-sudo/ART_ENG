@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-)wy0h9z6x4o3t4@=s_keq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'true') == 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split()
 
 
 SILENCED_SYSTEM_CHECKS = ["staticfiles.W004"]
@@ -103,13 +103,25 @@ WSGI_APPLICATION = 'ART_ENG.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'ATOMIC_REQUESTS': True,
+if os.environ.get('DB_TYPE', 'sqlite') == 'mysql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('MYSQL_NAME', None),
+            'USER': os.environ.get('MYSQL_USER', None),
+            'PASSWORD': os.environ.get('MYSQL_PASSWORD', None),
+            'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
+            'PORT': os.environ.get('MYSQL_PORT', '3306'),
+            'ATOMIC_REQUESTS': True,
+        }
     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+            'ATOMIC_REQUESTS': True,
+        }
 }
 
 
@@ -148,8 +160,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [BASE_DIR / 'staticfiles']
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 
@@ -165,21 +177,21 @@ MEDIA_ROOT = BASE_DIR / "files"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-SD_API = {
-    "host": os.getenv("SD_API_HOST", ""),
-    "port": 7860
-}
+SENTRY = os.environ.get("SENTRY", None)
+if SENTRY:
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
 
-SD_USER = 2
+    sentry_sdk.init(
+        dsn=SENTRY,
+        integrations=[DjangoIntegration()],
 
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
 
-Q_CLUSTER = {
-    'name': 'DjangORM',
-    'workers': 4,
-    'timeout': 90,
-    'retry': 120,
-    'queue_limit': 50,
-    'bulk': 10,
-    'orm': 'default',
-    'sync': DEBUG,
-}
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )

@@ -38,6 +38,7 @@ export class EasyLevelPageComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		console.log(document.cookie);
 		function getCookie(name: string): string {
 			var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
 			return matches ? decodeURIComponent(matches[1]) : "";

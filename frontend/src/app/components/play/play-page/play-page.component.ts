@@ -136,6 +136,7 @@ export class PlayPageComponent implements OnInit {
 			values: [],
 		}
 
+		let valid:boolean = true;
 		for (let i = 0; i < this.times.length; i++) {
 			// @ts-ignore
 			let structure = document.getElementById('structure' + this.times[i]).value;
@@ -152,23 +153,23 @@ export class PlayPageComponent implements OnInit {
 					// @ts-ignore
 					document.getElementById('structure' + time).style.background = 'transparent';
 				}, 200, this.times[i]);
-				return;
-			} else if (!this.isCorrectSentence(sentence, i)) {
+				valid=false;
+			} if (!this.isCorrectSentence(sentence, i)) {
 				// @ts-ignore
 				document.getElementById('sentence' + this.times[i]).style.background = '#bd4141'
 				setTimeout(function (time) {
 					// @ts-ignore
 					document.getElementById('sentence' + time).style.background = 'transparent';
 				}, 200, this.times[i]);
-				return;
-			} else if (!this.isCorrectWord(word, i)) {
+				valid=false;
+			} if (!this.isCorrectWord(word, i)) {
 				// @ts-ignore
 				document.getElementById('word' + this.times[i]).style.background = '#bd4141'
 				setTimeout(function (time) {
 					// @ts-ignore
 					document.getElementById('word' + time).style.background = 'transparent';
 				}, 200, this.times[i]);
-				return;
+				valid=false;
 			}
 
 			data.values?.push(this.times[i]);
@@ -177,8 +178,9 @@ export class PlayPageComponent implements OnInit {
 			data.values?.push(word);
 		}
 
-		document.cookie="answer="+data.values+";path:/game";
-
-		this.router.navigate(['/game/easy']);
+		if (valid) {
+			document.cookie = "answer=" + data.values + ";path:/game";
+			this.router.navigate(['/game/easy']);
+		}
 	}
 }

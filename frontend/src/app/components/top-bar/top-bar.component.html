@@ -13,7 +13,8 @@
   </div>
   <div class="header__centerslide">
     <ul class="navigation">
-      <li [routerLink]="['/pre-learn']" class="navigation-list-item"><p>Обучение</p></li>
+      <li (click)="go('modules-comp')" class="navigation-list-item"><p>Модули</p></li>
+      <li (click)="go('learn-comp')" class="navigation-list-item"><p>Обучение</p></li>
       <li (click)="go('/pre-play')" class="navigation-list-item"><p>Играть</p></li>
     </ul>
   </div>
@@ -27,9 +28,9 @@
       </button>
     </div>
     <div (click)="this.open_profile_menu()" *ngIf="this.User.is_registered">
-      <div class="user-icon">
-
-      </div>
+      <button class="btn clr2">
+        <p>Профиль</p>
+      </button>
     </div>
     <div id="profile-menu" class="open-icon-menu">
       <p [routerLink]="['/profile']">Профиль</p>
@@ -55,7 +56,8 @@
   <div class="top-bar"></div>
   <div class="mobile-container">
     <ul class="mobile-menu-table">
-      <li (click)="go('/pre-learn')">Обучение</li>
+      <li (click)="go('modules-comp')">Модули</li>
+      <li (click)="go('learn-comp')">Обучение</li>
       <li (click)="go('/pre-play')">Играть</li>
     </ul>
 

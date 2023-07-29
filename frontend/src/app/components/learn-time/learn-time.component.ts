@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {LearnTimeServiceService} from "../../services/learn-time-service.service";
 import {LearnTimeModel, timesToLearn} from "../../models/LearnTimeModel";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./learn-time.component.css', '../../../styles.css']
 })
 export class LearnTimeComponent implements OnInit {
-  public Rule: LearnTimeModel={
+  @Input() public Rule: LearnTimeModel={
     time: "Present Simple - «настоящее простое»",
     whenUses: [
       "Законы природы — то, что всегда правда",
@@ -45,8 +45,8 @@ export class LearnTimeComponent implements OnInit {
       "never-никогда",
     ],
   };
-  public time:string="";
-  public time_name: string="";
+  @Input() public time:string="";
+  @Input() public time_name: string="";
   public big_array:number[]=[];
 
   constructor(
@@ -56,23 +56,45 @@ export class LearnTimeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setUp();
+  }
+
+  setUp() {
     // getting times from link
-    const routeParams = this.route.snapshot.paramMap;
-    const timeName = String(routeParams.get('timeName'));
-    console.log(timeName)
+    function getCookie(name: string): string {
+      var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+      return matches ? decodeURIComponent(matches[1]) : "";
+    }
+    // getting times from cookies
+    let timeName:string=getCookie('learn-time');
+    console.log(timeName);
     for (let i = 0; i < timeName.length; i++) {
-      if (timeName[i]=='\n') { this.time_name+=" "; continue; }
+      if (timeName[i]==' ') { this.time_name+=' '; continue; }
       this.time+=timeName[i];
       this.time_name+=timeName[i];
     }
+    console.log(this.time, this.time_name);
     this.Rule=this.learnTimeServiceService.getRules(this.time);
     for (let i = 0; i < 120; i++) this.big_array.push(0);
+
   }
+
 
   getLink() {
     let res="";
     let index=this.learnTimeServiceService.getIndex(this.time);
     if (index<10) res+="0"+String(index);
     return res;
+  }
+
+  close_open_menu() {
+    // @ts-ignore
+    document.getElementById('learn-page').style.transform='rotateX(90deg) translateZ(-50vh)';
+    // @ts-ignore
+    document.getElementById('learn-page-background').style.opacity='0';
+    setTimeout(function() {
+      // @ts-ignore
+      document.getElementById('learn-page').style.display='none';
+    }, 500)
   }
 }

@@ -1,5 +1,10 @@
-<div class="s6_main flex center">
-  <div class="field flex column left">
+<div class="s6_main flex1 center">
+  <div id="learn-page-background" (click)="close_open_menu()" class="background"></div>
+  <svg (click)="close_open_menu()" class="close-icon" width="30" height="30" viewBox="0 0 44 44" style="fill: #ffffff" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2.32233 2.32233L42.3223 42.3223" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M2.32233 42.3223L42.3223 2.32234" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+  <div id="scrolled-part" class="field flex column left">
     <p class="title">{{this.Rule?.time}}</p>
 
     <p class="subtitle">Когда используется <b>{{time_name}}</b></p>

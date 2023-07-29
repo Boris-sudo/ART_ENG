@@ -3,7 +3,7 @@
 
     <p class="text">Выберите время, которое хотите выучить.</p>
     <div class="times_container flex1 column">
-      <div class="time_card flex center" (click)="learn(time)" *ngFor="let time of allTimes;">
+      <div class="time_card flex center" [id]="time" (click)="learn(time)" *ngFor="let time of allTimes;">
         <p>{{time}}</p>
       </div>
     </div>

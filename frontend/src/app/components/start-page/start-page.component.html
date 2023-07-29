@@ -1,5 +1,5 @@
 <main>
-  <div class="s1_upslide flex center">
+  <div id="modules-comp" class="s1_upslide flex center">
     <div class="field">
       <img src="/static/assets/table.png">
       <div class="button flex column">
@@ -9,12 +9,12 @@
     </div>
   </div>
 
-  <div class="s1_centerslide flex center">
+  <div id="learn-comp" class="s1_centerslide flex center">
     <div class="field flex column padding10">
       <p class="text">Учи времена с нами</p>
       <div class="time-zone flex row center">
         <div id="card-container" class="time-container flex row center">
-          <div class="time-card flex center" (click)="addChosen(time)" [class.chosen]="isTimeChosen(time)" *ngFor="let time of this.times">
+          <div class="time-card flex center" [class.disabled]="this.isTimeChosen(time)" (click)="openTime(time)" *ngFor="let time of this.times">
             <p>{{time}}</p>
           </div>
         </div>
@@ -54,9 +54,11 @@
         <ul class="s12_contact_table flex column center">
           <li>По всем вопросам пишите:</li>
           <li>Арцегова София Игоревна</li>
-          <li>1255775@mail.ru</li>
+          <li>artenglish@internet.ru</li>
         </ul>
       </div>
     </div>
   </div>
 </main>
+
+<app-learn-time [Rule]="this.InputRule" [time]="this.InputTime" [time_name]="this.InputTimeName" id="learn-page" class="open-time-learn"></app-learn-time>

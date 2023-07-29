@@ -21,9 +21,6 @@ const routes: Routes = [
   {path: 'game/hard', component: HardLevelPageComponent},
   {path: 'pre-play/:timesID', component: PrePlayPageComponent},
 
-  {path: 'pre-learn', component: PreLearnPageComponent},
-  {path: 'learn-time/:timeName', component: LearnTimeComponent},
-
   {path: 'register', component: RegistrationPageComponent},
   {path: 'login', component: LoginPageComponent },
 ];

@@ -29,7 +29,7 @@ export class TopBarComponent implements OnInit {
 		this.profile_service.get().subscribe(
 			response => {
 				console.log(response);
-				this.User={
+				this.User = {
 					username: response.username,
 					email: response.email,
 					is_registered: true,
@@ -41,15 +41,28 @@ export class TopBarComponent implements OnInit {
 	}
 
 	go(link: string) {
-		if (link=='/pre-play')
-			this.router.navigate([link,-1]);
-		else
+		if (link[0] != '/') {
+			this.router.navigate(['']);
+			setTimeout(function(link) {
+				window.scrollTo({
+					// @ts-ignore
+					top: document.getElementById(link).offsetTop-60-30,
+					behavior: "smooth"
+				});
+			}, 300, link)
+		}
+		else if (link == '/pre-play')
+			this.router.navigate([link, -1]);
+		else {
 			this.router.navigate([link]);
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth"
-		});
+			window.scrollTo({
+				// @ts-ignore
+				top: 0,
+				behavior: "smooth"
+			});
+		}
 		this.close_menu();
+		this.close_profile_menu();
 	}
 
 	open_menu() {
@@ -80,6 +93,7 @@ export class TopBarComponent implements OnInit {
 			}
 		}, 10)
 	}
+
 	logout() {
 		const data = "";
 		this.logout_api.post(data).subscribe(
@@ -92,24 +106,26 @@ export class TopBarComponent implements OnInit {
 		)
 		window.location.reload();
 	}
+
+	close_profile_menu() {
+		// @ts-ignore
+		document.getElementById('profile-menu').style.height = '0px';
+		setTimeout(function () {
+			// @ts-ignore
+			document.getElementById('profile-menu').style.display = 'none';
+		}, 500)
+	}
 	open_profile_menu() {
 		// @ts-ignore
-		console.log(document.getElementById('profile-menu').style.height);
-		// @ts-ignore
-		if (document.getElementById('profile-menu').style.height==''||document.getElementById('profile-menu').style.height=='0px') {
+		if (document.getElementById('profile-menu').style.height == '' || document.getElementById('profile-menu').style.height == '0px') {
 			// @ts-ignore
-			document.getElementById('profile-menu').style.display='block';
-			setTimeout(function() {
+			document.getElementById('profile-menu').style.display = 'block';
+			setTimeout(function () {
 				// @ts-ignore
-				document.getElementById('profile-menu').style.height='var(--height)';
+				document.getElementById('profile-menu').style.height = 'var(--height)';
 			}, 10)
 		} else {
-			// @ts-ignore
-			document.getElementById('profile-menu').style.height='0px';
-			setTimeout(function() {
-				// @ts-ignore
-				document.getElementById('profile-menu').style.display='none';
-			}, 500)
+			this.close_profile_menu();
 		}
 	}
 }

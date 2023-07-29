@@ -1,10 +1,37 @@
 .s6_main {
   box-sizing: border-box;
   width: 100vw;
-  padding: 10vh 10px 0;
+  height: 100vh;
+  padding: 10vh 10px;
+}
+.background {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 110vw;
+  height: 110vh;
+  opacity: 0;
+  transition-duration: .5s;
+  background: rgba(0,0,0,40%);
+}
+.flex1 {
+  display: flex;
+}
+.close-icon {
+  z-index: 1000;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 .field {
+  z-index: 1000;
   width: min(70em, 100%);
+  background: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 15px;
+  overflow: scroll;
 }
 
 

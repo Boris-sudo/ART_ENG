@@ -213,6 +213,7 @@ export class TimeSentencesService {
   public structure: string[][]=[
     [
       "dodoesv",
+      "dodoes",
       "doesdov",
       "dov",
       "doesv",

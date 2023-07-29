@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
-from app.models import Items, Value
+from app.models import Items, Value, Profile
 from rest_framework import serializers
 from django.core import exceptions
 import django.contrib.auth.password_validation as validators
+from django.utils import timezone
+from datetime import datetime
 
 
 class ValueSerializer(serializers.StringRelatedField):
@@ -36,9 +38,30 @@ class ItemsSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    date_paid = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'date_paid']
+        read_only_fields = ['id', 'email']
+
+    def update(self, instance, validated_data):
+        print(validated_data)
+        timestamp = validated_data.pop("date_paid", None)
+        if timestamp:
+            profile = self.get_profile(instance)
+            profile.date_paid = datetime.fromtimestamp(timestamp, tz=timezone.get_default_timezone())
+            profile.save()
+        super().update(instance, validated_data)
+        return instance
+
+    def get_profile(self, instance: User):
+        return Profile.objects.get(user=instance)
+
+    def get_date_paid(self, instance: User):
+        date = self.get_profile(instance).date_paid
+        if date:
+            return int(date.timestamp())
 
 
 class RegisterSerializer(serializers.ModelSerializer):

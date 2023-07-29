@@ -181,7 +181,9 @@ export class PlayPageComponent implements OnInit {
 		}
 
 		if (valid) {
+			document.cookie = 'answer=; path=/; expires=-1';
 			document.cookie = "answer=" + data.values + ";path:/game";
+			console.log(document.cookie);
 			this.router.navigate(['/game/easy']);
 		}
 	}

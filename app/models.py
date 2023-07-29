@@ -1,6 +1,15 @@
 from django.db import models
 
 
+class Profile(models.Model):
+    class Meta:
+        verbose_name = "Профиль"
+        verbose_name_plural = "Профили"
+
+    user = models.OneToOneField("auth.User", on_delete=models.CASCADE, verbose_name="Пользователь")
+    date_paid = models.DateTimeField(blank=True, null=True, verbose_name="Дата покупки")
+
+
 class Items(models.Model):
     class Meta:
         verbose_name = "Массив"

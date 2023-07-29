@@ -18,10 +18,15 @@ class ProfileApi(generics.GenericAPIView):
 
     def post(self, request):
         user = request.user
-        serializer = self.get_serializer(user, data=request.data, partial=True)
+        data = {}
+        for key, value in request.data.items():
+            if value:
+                data[key] = value
+        date_paid = data["date_paid"] if "date_paid" in data else None
+        serializer = self.get_serializer(user, data=data, partial=True)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            serializer.save(date_paid=date_paid)
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

@@ -41,15 +41,17 @@ h1, p {
     text-align: center;
 }
 .body {
-    --height: 250px;
     z-index: 1001;
     position: absolute;
     --width: max(300px, min(70vw, 600px));
     width: var(--width);
-    left: calc((100vw - var(--width)) / 2);
-    top: calc((100vh - var(--height)) / 2);
-    padding: 10px 20px;
-    height: var(--height);
+    left: calc((100vw - var(--width) - 40px) / 2);
+    top: 40vh;
+    padding: 40px 20px;
+    height: fit-content;
     border-radius: 15px;
     background: #f8f8f8;
+}
+@media screen and (max-width: 700px) {
+    .body { top: 30vh; padding: 10px 20px; }
 }

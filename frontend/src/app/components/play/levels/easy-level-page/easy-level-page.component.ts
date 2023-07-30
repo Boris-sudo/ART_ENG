@@ -87,6 +87,7 @@ export class EasyLevelPageComponent implements OnInit {
 	}
 
 	checkAnswers() {
+		let valid=true;
 		for (let i = 0; i < this.changeID.length; i++) {
 			// @ts-ignore
 			let result=document.getElementById(this.changeID[i]).value;
@@ -95,7 +96,9 @@ export class EasyLevelPageComponent implements OnInit {
 				result = this.structureToNormal(result);
 				check = this.structureToNormal(check);
 			}
-			if (this.changeNumber)
+			if (this.changeNumber[1][i]==3) {
+				result=result.toLowerCase();
+			}
 			if (result != check)  {
 				// @ts-ignore
 				document.getElementById(this.changeID[i]).style.background='#f61313';
@@ -103,11 +106,11 @@ export class EasyLevelPageComponent implements OnInit {
 					// @ts-ignore
 					document.getElementById(id).style.background='transparent';
 				}, 200, this.changeID[i])
-				return false;
+				valid=false;
 			}
 		}
 
-		return true;
+		return valid;
 	}
 
 	structureToNormal(str:string) {

@@ -84,6 +84,7 @@ export class MediumLevelPageComponent implements OnInit {
 	}
 
 	checkAnswers() {
+		let valid:boolean=false;
 		for (let i = 0; i < this.changeID.length; i++) {
 			// @ts-ignore
 			let result = document.getElementById(this.changeID[i]).value;
@@ -92,19 +93,21 @@ export class MediumLevelPageComponent implements OnInit {
 				result = this.structureToNormal(result);
 				check = this.structureToNormal(check);
 			}
-			if (this.changeNumber)
-				if (result != check) {
+			if (this.changeNumber[1][i]==3) {
+				result=result.toLowerCase();
+			}
+			if (result != check) {
+				// @ts-ignore
+				document.getElementById(this.changeID[i]).style.background = '#f61313';
+				setTimeout(function (id) {
 					// @ts-ignore
-					document.getElementById(this.changeID[i]).style.background = '#f61313';
-					setTimeout(function (id) {
-						// @ts-ignore
-						document.getElementById(id).style.background = 'transparent';
-					}, 200, this.changeID[0])
-					return false;
-				}
+					document.getElementById(id).style.background = 'transparent';
+				}, 200, this.changeID[0])
+				valid=false;
+			}
 		}
 
-		return true;
+		return valid;
 	}
 
 	structureToNormal(str: string) {

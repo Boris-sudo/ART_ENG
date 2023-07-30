@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { UserRegister } from "../../models/api/user-register.model";
 
 
-const baseUrl = '/api/register';
+const baseUrl = '/api/register/';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,11 @@ export class UserRegisterService {
   }
 
   get(id: any): Observable<UserRegister> {
-    return this.http.get(`${baseUrl}/${id}`);
+    return this.http.get(`${baseUrl}${id}`);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(`${baseUrl}/`, data);
+    return this.http.post(`${baseUrl}`, data);
   }
 
   delete(id: any): Observable<any> {

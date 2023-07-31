@@ -28,7 +28,6 @@ export class TopBarComponent implements OnInit {
 	ngOnInit(): void {
 		this.profile_service.get().subscribe(
 			response => {
-				console.log(response);
 				this.User = {
 					date_paid: response.date_paid,
 					username: response.username,
@@ -36,7 +35,6 @@ export class TopBarComponent implements OnInit {
 					is_registered: true,
 				}
 			}, error => {
-				console.log(error);
 			}
 		)
 	}
@@ -99,10 +97,8 @@ export class TopBarComponent implements OnInit {
 		const data = "";
 		this.logout_api.post(data).subscribe(
 			response => {
-				console.log(response);
 			},
 			error => {
-				console.log(error);
 			}
 		)
 		window.location.reload();

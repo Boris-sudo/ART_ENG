@@ -1,66 +1,76 @@
 <div class="s4_main flex center">
     <div class="field">
 
-        <div class="s4_header flex row center">
-            <p>Заполните все ячейки (Уровень: средний)</p>
+        <div class="s4_header flex column center">
+            <p style="text-align: center">Заполните все ячейки</p>
+            <p style="text-align: center">(Уровень: средне)</p>
+        </div>
+        <div style="width: 100%; margin-top: 20px; margin-bottom: 30px;" class="flex center">
+            <button (click)="new()" id="gen-btn" class="clr1 big-btn flex center"><p>Сгенерировать</p></button>
         </div>
 
-        <div class="s4_game-part flex column center">
-            <div class="s4_game-card flex column space-around wrap">
-                <p>Время:</p>
-                <div class="flex row1 space-around">
-                    <input  [id]="time[0]" *ngFor="let time of this.answers" disabled>
+        <div style="width: 100%; grid-row-gap: 30px; grid-column-gap: 40px;" class="flex column center">
+            <div *ngFor="let time of this.times; let i = index" class="s4_game-part flex column center">
+                <div class="s4_game-card flex column space-around wrap">
+                    <p>Время:</p>
+                    <div class="flex row1 space-around">
+                        <input [id]="time" value="" [disabled]="this.disabled[i][0]" autocomplete="off">
+                    </div>
                 </div>
-            </div>
-            <div class="s4_game-card flex column space-around wrap">
-                <p>Самое важное в структуре:
-                    <span style="position:relative;">
-                    <span (click)="showHint(1)" class="rounded-icon">❔</span>
-                        <div class="hint" id="hint1">
-                          <p style="font-size: .5em; text-align: center;">В поле для ввода введите, что самое важное в структуре времени, что вы вводили и ранее.</p>
-                          <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Форма to be + глагол + окончание</p>
+                <div class="s4_game-card flex column space-around wrap">
+                    <p>Самое важное в структуре:
+                        <span style="position:relative;">
+                            <span (click)="showHint(i*3)" class="rounded-icon">❔</span>
+                            <div class="hint" [id]="'hint'+i*3">
+                                <p style="font-size: .5em; text-align: center;">В поле для ввода введите, что самое важное в структуре каждого их времени</p>
+                                <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Форма to be + глагол + окончание</p>
+                            </div>
+                        </span>
+                    </p>
+                    <div class="flex row1 space-around">
+                        <input [id]="'structure'+time" autocomplete="off" placeholder="Введите самое важное в структуре" [disabled]="this.disabled[i][1]">
+                    </div>
+                </div>
+                <div class="s4_game-card flex column space-around wrap">
+                    <p>Предложение:
+                        <span style="position:relative;">
+                            <span (click)="showHint(i*3+1)" class="rounded-icon">❔</span>
+                            <div class="hint flex center" [id]="'hint'+(i*3+1)">
+                                <p style="font-size: .5em; text-align: center;">Из данного вам списка выберите предложения, в котром используется такое же время, как и выбранное вами</p>
+                            </div>
+                        </span>
+                    </p>
+                    <div class="flex row1 space-around">
+                        <div class="select-width">
+                            <select (change)="changeSelectedValue(i)" [value]="this.selectValues[i]" [id]="'sentence'+time" [disabled]="this.disabled[i][2]">
+                                <option *ngIf="this.selectValues[i]=='...'">...</option>
+                                <option *ngFor="let sentence of sentences[i]">{{sentence}}</option>
+                            </select>
                         </div>
-                    </span>
-                </p>
-                <div class="flex row1 space-around">
-                    <input [id]="'structure'+time[0]" *ngFor="let time of this.answers"
-                           placeholder="Введите самое важное в структуре" disabled>
+                    </div>
                 </div>
-            </div>
-            <div class="s4_game-card flex column space-around wrap">
-                <p>Предложение:
-                    <span style="position:relative;">
-                        <span (click)="showHint(2)" class="rounded-icon">❔</span>
-                        <div class="hint flex center" id="hint2">
-                            <p style="font-size: .5em; text-align: center;">Из данного вам списка выберите предложения, которое вы вводили ранее.</p>
-                        </div>
-                    </span>
-                </p>
-                <div class="flex row1 space-around">
-                    <input [id]="'sentence'+time[0]" *ngFor="let time of this.answers"
-                           placeholder="Введите предложение к времени" disabled>
+                <div class="s4_game-card flex column space-around wrap">
+                    <p>
+                        Слово маркер время:
+                        <span style="position:relative;">
+                            <span (click)="showHint(i*3+2)" class="rounded-icon">❔</span>
+                            <div class="hint" [id]="'hint'+(i*3+2)">
+                                <p style="font-size: .5em; text-align: center;">В поле для ввода впишите слово, которое характеризиует выбранное вами время наиболее обще.</p>
+                                <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Present Continuous - сейчас</p>
+                            </div>
+                        </span>
+                    </p>
+                    <div class="flex row1 space-around">
+                        <input [id]="'word'+time" placeholder="" [disabled]="this.disabled[i][3]" autocomplete="off">
+                    </div>
                 </div>
-            </div>
-            <div class="s4_game-card flex column space-around wrap">
-                <p>
-                    Слово маркер время:
-                    <span style="position:relative;">
-                        <span (click)="showHint(3)" class="rounded-icon">❔</span>
-                        <div class="hint" id="hint3">
-                            <p style="font-size: .5em; text-align: center;">В поле для ввода впишите слово, которое вы вписывали раньше для характеристики соответствующего времени.</p>
-                            <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Present Continuous - сейчас</p>
-                        </div>
-                    </span>
-                </p>
-                <div class="flex row1 space-around">
-                    <input [id]="'word'+time[0]" *ngFor="let time of this.answers" placeholder="Введите слово или предложение" disabled>
-                </div>
-            </div>
 
-            <div style="width: 100%; margin-top: 20px;" class="flex row space-around wrap">
-                <button id="new-level" (click)="new()" class="clr1 big-btn flex center"><p>Сгенерировать уровень</p></button>
-                <button (click)="next()" class="clr1 big-btn flex center"><p>Следующий уровень</p></button>
+                <hr>
             </div>
+        </div>
+
+        <div style="width: 100%; margin-top: 30px;" class="flex row center wrap">
+            <button (click)="next()" class="clr1 big-btn flex center"><p>Следующий уровень</p></button>
         </div>
     </div>
 </div>

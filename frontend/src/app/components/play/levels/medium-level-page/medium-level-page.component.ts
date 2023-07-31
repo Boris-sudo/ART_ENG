@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {GameService} from "../../../../services/api/game.service";
 import {TimeSentencesService} from "../../../../services/time-sentences.service";
 
 @Component({
@@ -23,46 +22,45 @@ export class MediumLevelPageComponent implements OnInit {
 		"Future Perfect",
 		"Future Perfect Continuous",
 	]
-	public answers: string[][] = [[]];
+	public times:string[]=[]; // времена с которыми клиент имеет дело
+	public indexes: number[]=[]; // индексы времен в allTimes
+	public newClicks: number=0; // 0-проверить; 1-сгенерировать
+	// обнуляется
 	public sentences: string[][] = [[], [], []];
-	public newClicks: number = 0;
-	private changeID: string[] = [];
-	private changeNumber: number[][] = [[], []];
+	public disabled: boolean[][] = [[true, true, true, true], [true, true, true, true], [true, true, true, true]];
+	private changeNumber: number[][] = [[], [], []];
+	private changeIDs: string[][] = [[], [], []];
+	public selectValues: string[]=["...", "...", "..."];
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private gameApi: GameService,
 		private timeSentencesService: TimeSentencesService,
 	) {
 	}
 
 	ngOnInit(): void {
-		function getCookie(name: string): string {
-			var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-			return matches ? decodeURIComponent(matches[1]) : "";
+		function findIndex(name: string, a: string[]):number {
+			for (let i = 0; i < a.length; i++)
+				if (a[i]==name)
+					return i;
+			return -1;
 		}
 
-		let res: string = getCookie('answer');
-		res += ',';
-		let word: string = '';
-		let count: number = 0;
-		for (let i = 0; i < res.length; i++) {
-			if (res[i] == ',') {
-				this.answers[this.answers.length - 1].push(word);
-				word = '';
-				count++;
-				if (count == 4)
-					this.answers.push([]), count = 0;
-			} else
-				word += res[i];
+		// @ts-ignore
+		let times_string:string=localStorage.getItem('chosenTimes');
+		let time="";
+		for (let i = 0; i < times_string.length; i++) {
+			if (times_string[i]==',') this.times.push(time), time='';
+			else time+=times_string[i];
 		}
-		this.answers.pop();
 
-		this.answers.sort(() => Math.random() - 0.5);
+		// this.times.sort(() => Math.random() - 0.5);
+		for (const time of this.times)
+			this.indexes.push(findIndex(time, this.allTimes))
 	}
 
-	showHint(id: number) {
+	showHint(id: number){
 		/*@ts-ignore*/
 		document.getElementById('hint' + id).style.display = 'block';
 
@@ -83,40 +81,62 @@ export class MediumLevelPageComponent implements OnInit {
 
 	}
 
-	checkAnswers() {
-		let valid:boolean=false;
-		for (let i = 0; i < this.changeID.length; i++) {
-			// @ts-ignore
-			let result = document.getElementById(this.changeID[i]).value;
-			let check = this.answers[this.changeNumber[0][i]][this.changeNumber[1][i]];
-			if (this.changeNumber[1][i] == 1) {
-				result = this.structureToNormal(result);
-				check = this.structureToNormal(check);
-			}
-			if (this.changeNumber[1][i]==3) {
-				result=result.toLowerCase();
-			}
-			if (result != check) {
-				// @ts-ignore
-				document.getElementById(this.changeID[i]).style.background = '#f61313';
-				setTimeout(function (id) {
+	deleteSigns(a: string): string {
+		let result='';
+
+		a=a.toLowerCase();
+		for (let c of a) {
+			if (c>='a'&&c<='z') result+=c;
+			else if (c>='а'&&c<='я') result+=c;
+		}
+
+		return result;
+	}
+
+	checkAnswers():boolean {
+		let result:boolean = true;
+
+		//проверка
+		for (let i = 0; i < this.times.length; i++) {
+			for (let j = 0; j < this.changeNumber[i].length; j++) {
+				let found: boolean=false;
+
+				if (this.changeNumber[i][j]==0) {
 					// @ts-ignore
-					document.getElementById(id).style.background = 'transparent';
-				}, 200, this.changeID[0])
-				valid=false;
+					let value=document.getElementById(this.changeIDs[i][j]).value;
+					if (value.toLowerCase() == this.times[i].toLowerCase())
+						found=true;
+				}
+				else if (this.changeNumber[i][j]==1) {
+					// @ts-ignore
+					let value=this.deleteSigns(document.getElementById(this.changeIDs[i][j]).value);
+					for (let k = 0; k < this.timeSentencesService.structure[this.indexes[i]].length; k++)
+						if (this.timeSentencesService.structure[this.indexes[i]][k]==value)
+							found=true;
+				}
+				else if (this.changeNumber[i][j]==2) {
+					// @ts-ignore
+					let value=document.getElementById(this.changeIDs[i][j]).value;
+					for (let k = 0; k < this.timeSentencesService.sentences[this.indexes[i]].length; k++)
+						if (this.timeSentencesService.sentences[this.indexes[i]][k]==value)
+							found=true;
+				}
+				else if (this.changeNumber[i][j]==3) {
+					// @ts-ignore
+					let value=this.deleteSigns(document.getElementById(this.changeIDs[i][j]).value);
+					for (let k = 0; k < this.timeSentencesService.words[this.indexes[i]].length; k++)
+						if (this.timeSentencesService.words[this.indexes[i]][k]==value)
+							found=true;
+				}
+
+				if (!found) {
+					result = false;
+					// @ts-ignore
+					document.getElementById(this.changeIDs[i][j]).style.background='#ff1818';
+				}
 			}
 		}
 
-		return valid;
-	}
-
-	structureToNormal(str: string) {
-		str = str.toLowerCase();
-		let result = "";
-		for (let i = 0; i < str.length; i++)
-			if (str[i] >= 'a' && str[i] <= 'z')
-				result += str[i];
-		console.log(result);
 		return result;
 	}
 
@@ -124,150 +144,129 @@ export class MediumLevelPageComponent implements OnInit {
 		if (!this.checkAnswers()) {
 			return;
 		} else {
-			for (let i = 0; i < this.changeID.length; i++) {
-				// @ts-ignore
-				document.getElementById(this.changeID[i]).style.background = '#00ff00';
-			}
-			setTimeout(function (router) {
-				router.navigate(['/game/hard']);
-				setTimeout(function() {
-					window.scrollTo({
-						top: 0,
-						behavior: "smooth"
-					});
-				}, 10)
-			}, 200, this.router);
+			this.router.navigate(['/game/hard']);
+			setTimeout(function() {
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				})
+			}, 10)
 		}
 	}
-
 	generate() {
 		function getRandomInt(max: number) {
 			return Math.floor(Math.random() * max);
 		}
-
-		function find(str: number, arr: number[]): boolean {
-			for (let i = 0; i < arr.length; i++)
-				if (arr[i] == str)
-					return true;
+		function findStr(name: string, a: string[]) {
+			for (let i = 0; i < a.length; i++) {
+				if (name==a[i]) return true;
+			}
+			return false;
+		}
+		function findNum(name: number, a: number[]) {
+			for (let i = 0; i < a.length; i++) {
+				if (name==a[i]) return true;
+			}
 			return false;
 		}
 
-		function findIndex(time: string, times: string[]) {
-			for (let i = 0; i < times.length; i++)
-				if (times[i] == time)
-					return i;
-			return -1;
-		}
+		for (let i = 0; i < this.times.length; i++) {
+			let result_sentence:string='';
+			// getting random active inputs
+			for (let j = 0; j < 3; j++) {
+				let index=getRandomInt(4);
+				while (findNum(index, this.changeNumber[i])) index=getRandomInt(4);
 
-		// setting this.sentences
-		for (let i = 0; i < this.answers.length; i++) {
-			this.sentences[i].length = 0;
-			let index = findIndex(this.answers[i][0], this.allTimes);
-			let random_sentence = getRandomInt(15);
-			this.sentences[i].push(this.answers[i][2]);
+				this.changeNumber[i].push(index);
+				// setting active inputs abled
+				this.disabled[i][index]=false;
+			}
 
+			// getting random sentences
+			let random_sentence = getRandomInt(6);
+			result_sentence=this.timeSentencesService.sentences[this.indexes[i]][random_sentence];
+			this.sentences[i].push(this.timeSentencesService.sentences[this.indexes[i]][random_sentence]);
 			for (let j = 0; j < 4; j++) {
 				let random_time = getRandomInt(12);
-				while (random_time == index) random_time = getRandomInt(12);
-				random_sentence = getRandomInt(15);
+				while (random_time == this.indexes[i]) random_time = getRandomInt(12);
+				random_sentence = getRandomInt(6);
+				while (findStr(this.timeSentencesService.sentences[random_time][random_sentence], this.sentences[i])) random_sentence=getRandomInt(6);
 				this.sentences[i].push(this.timeSentencesService.sentences[random_time][random_sentence]);
 			}
 			this.sentences[i].sort(() => Math.random() - 0.5);
+
+			//setting values to inputs
+			// @ts-ignore
+			document.getElementById(this.times[i]).value=this.times[i];
+			// @ts-ignore
+			document.getElementById('structure'+this.times[i]).value=this.timeSentencesService.structure[this.indexes[i]][0];
+			this.selectValues[i]=result_sentence;
+			// @ts-ignore
+			document.getElementById('word'+this.times[i]).value=this.timeSentencesService.words[this.indexes[i]][0];
+
+			//setting void values for chosen inputs
+			for (let j = 0; j < this.changeNumber[i].length; j++) {
+				if (this.changeNumber[i][j]==0) this.changeIDs[i].push(''+this.times[i]);
+				else if (this.changeNumber[i][j]==1) this.changeIDs[i].push('structure'+this.times[i]);
+				else if (this.changeNumber[i][j]==2) this.changeIDs[i].push('sentence'+this.times[i]);
+				else if (this.changeNumber[i][j]==3) this.changeIDs[i].push('word'+this.times[i]);
+
+				if (this.changeNumber[i][j]==2) this.selectValues[i]='...';
+				else {
+					// @ts-ignore
+					document.getElementById(this.changeIDs[i][j]).value = '';
+				}
+			}
 		}
-
-		// setting words to their inputs randomly
-		for (let i = 0; i < this.answers.length; i++) {
-			let available: number[] = [];
-			for (let j = 0; j < 2; j++) {
-				let new_available = getRandomInt(4);
-				while (find(new_available, available))
-					new_available = getRandomInt(4);
-				available.push(new_available);
-			}
-
+	}
+	new() {
+		if (this.newClicks==0) {
+			this.generate();
 			// @ts-ignore
-			document.getElementById(this.answers[i][0]).value = this.answers[i][0];
-			// @ts-ignore
-			document.getElementById('sentence' + this.answers[i][0]).value = this.answers[i][2];
-			// @ts-ignore
-			document.getElementById('structure' + this.answers[i][0]).value = this.answers[i][1];
-			// @ts-ignore
-			document.getElementById('word' + this.answers[i][0]).value = this.answers[i][3];
+			document.getElementById('gen-btn').innerText='Проверить';
+			this.newClicks=1;
+		} else {
+			if (this.checkAnswers()) {
+				//обнуление массивов
+				for (let i = 0; i < this.times.length; i++) {
+					this.sentences[i].length=0;
+					this.changeNumber[i].length=0;
+					this.changeIDs[i].length=0;
+				}
+				for (let i = 0; i < this.disabled.length; i++)
+					for (let j = 0; j < this.disabled[i].length; j++)
+						this.disabled[i][j]=true;
+				for (let i = 0; i < this.selectValues.length; i++)
+					this.selectValues[i]='...';
+				for (let i = 0; i < this.times.length; i++) {
+					// @ts-ignore
+					document.getElementById(''+this.times[i]).value='';
+					// @ts-ignore
+					document.getElementById('structure'+this.times[i]).value='';
+					// @ts-ignore
+					document.getElementById('word'+this.times[i]).value='';
 
-			for (let j = 0; j < available.length; j++) {
-				if (available[j] == 0) this.changeID.push(this.answers[i][0]);
-				else if (available[j] == 1) this.changeID.push('structure' + this.answers[i][0]);
-				else if (available[j] == 2) this.changeID.push('sentence' + this.answers[i][0]);
-				else this.changeID.push('word' + this.answers[i][0]);
-
-				this.changeNumber[0].push(i);
-				this.changeNumber[1].push(available[j]);
-			}
-
-			for (const id of this.changeID) {
+					// @ts-ignore
+					document.getElementById(''+this.times[i]).style.background='transparent';
+					// @ts-ignore
+					document.getElementById('sentence'+this.times[i]).style.background='transparent';
+					// @ts-ignore
+					document.getElementById('structure'+this.times[i]).style.background='transparent';
+					// @ts-ignore
+					document.getElementById('word'+this.times[i]).style.background='transparent';
+				}
+				// постановка изначального состояния
 				// @ts-ignore
-				document.getElementById(id).removeAttribute('disabled');
-				// @ts-ignore
-				document.getElementById(id).value = "";
+				document.getElementById('gen-btn').innerText='Сгенерировать';
+				this.newClicks=0;
+			} else {
+				return;
 			}
 		}
 	}
 
-	new() {
-		if (this.newClicks == 0) {
-			// @ts-ignore
-			document.getElementById('new-level').innerText = 'Проверить';
-			this.generate();
-			this.newClicks = (this.newClicks + 1) % 2;
-		} else {
-			if (!this.checkAnswers()) {
-				return;
-			} else {
-				// обнуление лишних массивов
-				this.changeNumber[0].length = 0;
-				this.changeNumber[1].length = 0;
-				this.changeID.length = 0;
-
-				// @ts-ignore
-				document.getElementById('new-level').innerText = 'Сгенерировать уровень';
-
-
-				for (let i = 0; i < this.changeID.length; i++) {
-					// @ts-ignore
-					document.getElementById(this.changeID[i]).style.background = '#00ff00';
-				}
-
-
-				setTimeout(function (ids, answers) {
-					for (let i = 0; i < ids.length; i++) {
-						// @ts-ignore
-						document.getElementById(ids[i]).style.background = 'transparent';
-					}
-
-					for (let i = 0; i < answers.length; i++) {
-						// @ts-ignore
-						document.getElementById(answers[i][0]).removeAttribute('disabled');
-						// @ts-ignore
-						document.getElementById('sentence' + answers[i][0]).removeAttribute('disabled');
-						// @ts-ignore
-						document.getElementById('structure' + answers[i][0]).removeAttribute('disabled');
-						// @ts-ignore
-						document.getElementById('word' + answers[i][0]).removeAttribute('disabled');
-
-						// @ts-ignore
-						document.getElementById('' + answers[i][0]).value = '';
-						// @ts-ignore
-						document.getElementById('structure' + answers[i][0]).value = '';
-						// @ts-ignore
-						document.getElementById('sentence' + answers[i][0]).value = '';
-						// @ts-ignore
-						document.getElementById('word' + answers[i][0]).value = '';
-					}
-				}, 200, this.changeID, this.answers)
-
-
-				this.newClicks = (this.newClicks + 1) % 2;
-			}
-		}
+	changeSelectedValue(ind: number) {
+		// @ts-ignore
+		this.selectValues[ind]=document.getElementById('sentence'+this.times[ind]).value;
 	}
 }

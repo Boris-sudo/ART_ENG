@@ -12,8 +12,6 @@ p,h1,h2,h3,h4,h5,div,a,span,ul,li {
 }
 
 
-
-
 .s4_header {
     width: 100%;
 
@@ -25,7 +23,7 @@ p,h1,h2,h3,h4,h5,div,a,span,ul,li {
 
 
 .s4_game-part {
-    width: 100%;
+    width: fit-content;
 }
 .s4_game-card {
     margin-top: 7vh;
@@ -72,8 +70,8 @@ p,h1,h2,h3,h4,h5,div,a,span,ul,li {
     .s4_game-card input, .select-width { font-size: 20px; }
     .s4_game-card p { font-size: 20px;}
 }
-.s4_game-card input { width: min(400px, max(300px, 40%)) !important; box-sizing: border-box; }
-.s4_game-card .select-width { width: min(400px, max(300px, 40%)) !important; }
+.s4_game-card input { width: min(400px, 70vw) !important; box-sizing: border-box; }
+.s4_game-card .select-width { width: min(400px, 70vw) !important; }
 
 
 .rounded-icon:hover {

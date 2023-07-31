@@ -74,24 +74,29 @@ export class PlayPageComponent implements OnInit {
 	}
 
 	showHint(id: number): void {
-		/*@ts-ignore*/
-		document.getElementById('hint' + id).style.display = 'block';
+		// @ts-ignore
+		let object:HTMLElement=document.getElementById('hint'+id);
+		if (object.style.display == 'none'||object.style.display=='') {
+			object.style.display = 'block';
 
-		setTimeout(function (id) {
-			/*@ts-ignore*/
-			document.getElementById(id).style.opacity = '100%';
-		}, 10, 'hint' + id);
+			setTimeout(function (object) {
+				object.style.opacity = '100%';
+			}, 10, object);
 
-		setTimeout(function (id) {
-			/*@ts-ignore*/
-			document.getElementById(id).style.opacity = '0%';
-		}, 10000, 'hint' + id);
+			setTimeout(function (object) {
+				object.style.opacity = '0%';
+			}, 10000, object);
 
-		setTimeout(function (id) {
-			/*@ts-ignore*/
-			document.getElementById(id).style.display = 'none';
-		}, 11000, 'hint' + id);
+			setTimeout(function (object) {
+				object.style.display = 'none';
+			}, 11000, object);
+		} else {
+			object.style.opacity = '0%';
 
+			setTimeout(function (object) {
+				object.style.display = 'none';
+			}, 100, object);
+		}
 	}
 
 	isCorrectSentence(sentence: string, ind: number): boolean {
@@ -150,28 +155,19 @@ export class PlayPageComponent implements OnInit {
 
 
 			if (!this.isCorrectStructure(structure, i)) {
+				console.log('struct');
 				// @ts-ignore
 				document.getElementById('structure' + this.times[i]).style.background = '#bd4141'
-				setTimeout(function (time) {
-					// @ts-ignore
-					document.getElementById('structure' + time).style.background = 'transparent';
-				}, 200, this.times[i]);
 				valid=false;
 			} if (!this.isCorrectSentence(sentence, i)) {
+				console.log('sentence');
 				// @ts-ignore
 				document.getElementById('sentence' + this.times[i]).style.background = '#bd4141'
-				setTimeout(function (time) {
-					// @ts-ignore
-					document.getElementById('sentence' + time).style.background = 'transparent';
-				}, 200, this.times[i]);
 				valid=false;
 			} if (!this.isCorrectWord(word, i)) {
+				console.log('word'+this.times[i]);
 				// @ts-ignore
 				document.getElementById('word' + this.times[i]).style.background = '#bd4141'
-				setTimeout(function (time) {
-					// @ts-ignore
-					document.getElementById('word' + time).style.background = 'transparent';
-				}, 200, this.times[i]);
 				valid=false;
 			}
 
@@ -181,11 +177,16 @@ export class PlayPageComponent implements OnInit {
 			data.values?.push(word);
 		}
 
+		console.log(valid);
 		if (valid) {
 			document.cookie = 'answer=; path=/; expires=-1';
 			document.cookie = "answer=" + data.values + ";path:/game";
 			console.log(document.cookie);
-			this.router.navigate(['/game/easy']);
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			})
+			this.router.navigate(['/game/easy/']);
 		}
 	}
 }

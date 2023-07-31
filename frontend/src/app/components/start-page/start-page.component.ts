@@ -136,9 +136,13 @@ export class StartPageComponent implements OnInit {
 					username: response.username,
 					email: response.email,
 					is_registered: true,
-					// @ts-ignore
-					is_valid_pay: ((response.date_paid - timestamp) / 86400) <= 30,
 				}
+				// @ts-ignore
+				let paid=new Date(this.User.date_paid);
+				let curr=new Date;
+				let paid_num = paid.getDate();
+				let curr_num = curr.getDate();
+				this.User.is_valid_pay=(30-paid_num+curr_num)%30<=30;
 			}, error => {
 			}
 		)
@@ -236,7 +240,7 @@ export class StartPageComponent implements OnInit {
 		}, 10)
 	}
 	islogged():boolean {
-		if (this.User.is_registered||this.User.is_valid_pay)
+		if (this.User.is_registered&&this.User.is_valid_pay)
 			return true;
 		return false;
 	}

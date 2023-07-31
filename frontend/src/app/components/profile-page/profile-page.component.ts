@@ -43,11 +43,14 @@ export class ProfilePageComponent implements OnInit {
 
 	}
 	getNextDate(): number {
-		let date=new Date();
-		let time=date.getTime();
 		// @ts-ignore
-		let result=(time-this.User.date_paid) / (60*60*24*100);
-		return Math.round(30-result);
+		let paid=new Date(this.User.date_paid);
+		let curr=new Date;
+		let paid_num = paid.getDate();
+		let curr_num = curr.getDate();
+
+		let result=30-(30-paid_num+curr_num)%30;
+		return result;
 	}
 	getDate():string {
 		// @ts-ignore

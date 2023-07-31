@@ -23,7 +23,7 @@ p,h1,h2,h3,h4,h5,div,a,span,ul,li {
 
 
 .s4_game-part {
-  width: 100%;
+  width: fit-content;
 }
 .s4_game-card {
   margin-top: 7vh;
@@ -70,11 +70,12 @@ p,h1,h2,h3,h4,h5,div,a,span,ul,li {
   .s4_game-card input, .select-width { font-size: 20px; }
   .s4_game-card p { font-size: 20px;}
 }
-.s4_game-card input { width: min(400px, max(300px, 40%)) !important; box-sizing: border-box; }
-.s4_game-card .select-width { width: min(400px, max(300px, 40%)) !important; }
+.s4_game-card input { width: min(400px, 70vw) !important; box-sizing: border-box; }
+.s4_game-card .select-width { width: min(400px, 70vw) !important; }
 
 
 .rounded-icon:hover {
+  border-width: 0;
   padding: 8.5px 7.5px;
   font-size: .8em;
   background: #505050;
@@ -85,7 +86,7 @@ p,h1,h2,h3,h4,h5,div,a,span,ul,li {
   font-size: .7em;
   margin-left: 5px;
   background: black;
-  border: 1px;
+  border: transparent solid 2px;
   padding: 6.5px 5.5px;
   border-radius: 1000px;
 }

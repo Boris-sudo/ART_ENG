@@ -11,7 +11,9 @@ export class PaymentComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-
+		document.addEventListener("keydown", ev => {
+			if (ev.key=='Escape') this.close_open_menu();
+		})
 	}
 
 	close_open_menu() {

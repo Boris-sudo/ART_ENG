@@ -133,6 +133,15 @@ export class PrePlayPageComponent implements OnInit {
 	}
 
 	play(): void {
+		if (this.chosenTimes.length==0) {
+			// @ts-ignore
+			document.getElementById('play-btn').style.background='#f11219';
+			setTimeout(function() {
+				// @ts-ignore
+				document.getElementById('play-btn').style.background='transparent';
+			}, 300)
+			return;
+		}
 		let result='';
 		for (let time of this.chosenTimes)
 			result+=time+',';

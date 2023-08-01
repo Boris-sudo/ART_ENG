@@ -110,7 +110,6 @@ export class EasyLevelPageComponent implements OnInit {
 				else if (this.changeNumber[i][j]==1) {
 					// @ts-ignore
 					let value=this.deleteSigns(document.getElementById(this.changeIDs[i][j]).value);
-					console.log(value);
 					for (let k = 0; k < this.timeSentencesService.structure[this.indexes[i]].length; k++)
 						if (this.timeSentencesService.structure[this.indexes[i]][k]==value)
 							found=true;
@@ -194,14 +193,13 @@ export class EasyLevelPageComponent implements OnInit {
 				while (findStr(this.timeSentencesService.sentences[random_time][random_sentence], this.sentences[i])) random_sentence=getRandomInt(6);
 				this.sentences[i].push(this.timeSentencesService.sentences[random_time][random_sentence]);
 			}
-			this.sentences[i].sort(() => Math.random() - 0.5);
 
 			//setting values to inputs
 			// @ts-ignore
 			document.getElementById(this.times[i]).value=this.times[i];
 			// @ts-ignore
 			document.getElementById('structure'+this.times[i]).value=this.timeSentencesService.structure[this.indexes[i]][0];
-			this.selectValues[i]=result_sentence;
+			this.selectValues[i]='';
 			// @ts-ignore
 			document.getElementById('word'+this.times[i]).value=this.timeSentencesService.words[this.indexes[i]][0];
 
@@ -212,12 +210,17 @@ export class EasyLevelPageComponent implements OnInit {
 				else if (this.changeNumber[i][j]==2) this.changeIDs[i].push('sentence'+this.times[i]);
 				else if (this.changeNumber[i][j]==3) this.changeIDs[i].push('word'+this.times[i]);
 
-				if (this.changeNumber[i][j]==2) this.selectValues[i]='...';
+				if (this.changeNumber[i][j]==2) {
+					this.sentences[i].sort(() => Math.random() - 0.5);
+					this.selectValues[i] = '...';
+				}
 				else {
 					// @ts-ignore
 					document.getElementById(this.changeIDs[i][j]).value = '';
 				}
 			}
+			// @ts-ignore
+			console.log(document.getElementById('sentence'+this.times[i]).value);
 		}
 	}
 	new() {

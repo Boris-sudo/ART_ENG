@@ -42,7 +42,7 @@
                     </p>
                     <div class="flex row1 space-around">
                         <div class="select-width">
-                            <select (change)="changeSelectedValue(i)" [value]="this.selectValues[i]" [id]="'sentence'+time" [disabled]="this.disabled[i][2]">
+                            <select [id]="'sentence'+time" [disabled]="this.disabled[i][2]">
                                 <option *ngIf="this.selectValues[i]=='...'">...</option>
                                 <option *ngFor="let sentence of sentences[i]">{{sentence}}</option>
                             </select>

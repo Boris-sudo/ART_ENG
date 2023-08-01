@@ -56,27 +56,9 @@ export class LearnTimeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setUp();
-  }
-
-  setUp() {
-    // getting times from link
-    function getCookie(name: string): string {
-      var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-      return matches ? decodeURIComponent(matches[1]) : "";
-    }
-    // getting times from cookies
-    let timeName:string=getCookie('learn-time');
-    console.log(timeName);
-    for (let i = 0; i < timeName.length; i++) {
-      if (timeName[i]==' ') { this.time_name+=' '; continue; }
-      this.time+=timeName[i];
-      this.time_name+=timeName[i];
-    }
-    console.log(this.time, this.time_name);
-    this.Rule=this.learnTimeServiceService.getRules(this.time);
-    for (let i = 0; i < 120; i++) this.big_array.push(0);
-
+    document.addEventListener("keydown", ev => {
+      if (ev.key=='Escape') this.close_open_menu();
+    })
   }
 
 

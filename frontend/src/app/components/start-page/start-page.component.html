@@ -1,64 +1,97 @@
 <main>
-  <div id="modules-comp" class="s1_upslide flex center">
-    <div class="field">
-      <img src="/static/assets/table.png">
-      <div class="button flex column">
-        <p class="text">Прогрессируй с нами</p>
-        <a style="text-decoration: none;" href="mailto:artenglish@internet.ru?subject=Вопрос по записи на занятие."><div class="small-btn clr1"><p>Записаться на занятие</p></div></a>
-      </div>
-    </div>
-  </div>
-
-  <div id="learn-comp" class="s1_centerslide flex center">
-    <div class="field flex column padding10">
-      <p class="text">Учи времена с нами</p>
-      <div class="time-zone flex row center">
-        <div id="card-container" class="time-container flex row center">
-          <div class="time-card flex column center" [class.disabled]="this.isTimeChosen(time)" (click)="openTime(time)" *ngFor="let time of this.times">
-            <p>{{time}}</p>
-            <p style="color: #fff;" *ngIf="!User.is_registered&&(time=='Present Simple'||time=='Present Continuous')">Доступно</p>
-          </div>
+    <div id="modules-comp" class="s1_upslide flex center">
+        <div class="field">
+            <img alt="table-icon" src="/static/assets/table.png">
+            <div class="button flex column">
+                <p class="text">Прогрессируй с нами</p>
+                <a style="text-decoration: none;"
+                   href="mailto:artenglish@internet.ru?subject=Вопрос по записи на занятие.">
+                    <div class="small-btn clr1"><p>Записаться на занятие</p></div>
+                </a>
+            </div>
         </div>
-        <svg style="width: 20%; height: 20%;" (click)="moveright()" class="left-arrow" viewBox="0 0 59 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.8417 30.7477C10.3939 30.3498 10.3939 29.6502 10.8417 29.2523L27.8359 14.1576C28.4809 13.5847 29.5 14.0426 29.5 14.9052L29.5 45.0948C29.5 45.9574 28.4809 46.4153 27.8359 45.8424L10.8417 30.7477Z" fill="black"/>
-          <rect x="25.6" y="34.2425" width="8.48485" height="23.4" rx="1" transform="rotate(-90 25.6 34.2425)" fill="black"/>
-          <rect x="0.5" y="59.5" width="59" height="58" rx="29" transform="rotate(-90 0.5 59.5)" stroke="black"/>
-        </svg>
-        <svg style="width: 20%; height: 20%;" (click)="moveleft()" class="right-arrow" viewBox="0 0 59 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M48.1583 29.2523C48.6061 29.6502 48.6061 30.3498 48.1583 30.7477L31.1641 45.8424C30.5191 46.4153 29.5 45.9574 29.5 45.0948L29.5 14.9052C29.5 14.0426 30.5191 13.5847 31.1641 14.1576L48.1583 29.2523Z" fill="black"/>
-          <rect x="33.4" y="25.7575" width="8.48485" height="23.4" rx="1" transform="rotate(90 33.4 25.7575)" fill="black"/>
-          <rect x="58.5" y="0.5" width="59" height="58" rx="29" transform="rotate(90 58.5 0.5)" stroke="black"/>
-        </svg>
-      </div>
     </div>
-  </div>
 
-  <div class="s1_bottomslide flex center">
-    <div class="field flex column center">
-      <p class="text">Пора перейти к основной игре</p>
-
-      <div [routerLink]="['/pre-play', getTimesID()]" class="big-btn clr1 flex center">
-        <p>Играть</p>
-      </div>
+    <div id="learn-comp" class="s1_centerslide flex center">
+        <div class="field flex column padding10">
+            <p class="text">Учи времена с нами</p>
+            <div class="time-zone flex row center">
+                <div id="card-container" class="time-container flex row center">
+                    <div class="time-card flex column center" [class.disabled]="this.isTimeChosen(time)"
+                         (click)="openTime(time)" *ngFor="let time of this.times">
+                        <p>{{time}}</p>
+                        <p style="color: #fff;"
+                           *ngIf="!User.is_registered&&(time=='Present Simple'||time=='Present Continuous')">
+                            Доступно</p>
+                    </div>
+                </div>
+                <svg style="width: 20%; height: 20%;" (click)="moveright()" class="left-arrow" viewBox="0 0 59 60"
+                     fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10.8417 30.7477C10.3939 30.3498 10.3939 29.6502 10.8417 29.2523L27.8359 14.1576C28.4809 13.5847 29.5 14.0426 29.5 14.9052L29.5 45.0948C29.5 45.9574 28.4809 46.4153 27.8359 45.8424L10.8417 30.7477Z"
+                        fill="black"/>
+                    <rect x="25.6" y="34.2425" width="8.48485" height="23.4" rx="1" transform="rotate(-90 25.6 34.2425)"
+                          fill="black"/>
+                    <rect x="0.5" y="59.5" width="59" height="58" rx="29" transform="rotate(-90 0.5 59.5)"
+                          stroke="black"/>
+                </svg>
+                <svg style="width: 20%; height: 20%;" (click)="moveleft()" class="right-arrow" viewBox="0 0 59 60"
+                     fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M48.1583 29.2523C48.6061 29.6502 48.6061 30.3498 48.1583 30.7477L31.1641 45.8424C30.5191 46.4153 29.5 45.9574 29.5 45.0948L29.5 14.9052C29.5 14.0426 30.5191 13.5847 31.1641 14.1576L48.1583 29.2523Z"
+                        fill="black"/>
+                    <rect x="33.4" y="25.7575" width="8.48485" height="23.4" rx="1" transform="rotate(90 33.4 25.7575)"
+                          fill="black"/>
+                    <rect x="58.5" y="0.5" width="59" height="58" rx="29" transform="rotate(90 58.5 0.5)"
+                          stroke="black"/>
+                </svg>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="s1_finalslide flex center">
-    <div class="field s12_table">
-      <div style="position: absolute; bottom: 10px; right: 10px;" class="">
-        <p class="s12_text">©Все права защищены</p>
-        <p style="font-family: 'Cabin Sketch',sans-serif; text-align: center;">ИНН: 771780159595</p>
-      </div>
-      <div class="s12_right-slide flex column space-around" >
-        <ul class="s12_contact_table flex column center">
-          <li>По всем вопросам пишите:</li>
-          <li>Арцегова София Игоревна</li>
-          <li>artenglish@internet.ru</li>
-        </ul>
-      </div>
+    <div class="s1_bottomslide flex center">
+        <div class="field flex column center">
+            <p class="text">Пора перейти к основной игре</p>
+
+            <div [routerLink]="['/pre-play', getTimesID()]" class="big-btn clr1 flex center">
+                <p>Играть</p>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="s1_finalslide flex center">
+        <div class="field flex wrap row space-between s12_table">
+            <div class="s12-card flex column" style="justify-content: flex-end">
+                <div style="width: 100%; margin-bottom: 20px;" class="flex row center">
+                    <a class="btm-svg" style="margin-right: 20px;"
+                       href="mailto:artenglish@internet.ru?subject=Вопрос по записи на занятие.">
+                        <svg width="35" height="35" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3.66582 3.14191V4.39898H5.74494C5.66094 4.93816 5.11687 5.97956 3.66582 5.97956C2.41486 5.97956 1.39332 4.94427 1.39332 3.66582C1.39332 2.38736 2.41516 1.35208 3.66582 1.35208C4.3776 1.35208 4.85446 1.6542 5.12756 1.91692L6.12161 0.958305C5.48314 0.362305 4.65528 0 3.66582 0C1.63893 0 0 1.63893 0 3.66582C0 5.69271 1.63893 7.33163 3.66582 7.33163C5.7816 7.33163 7.185 5.84423 7.185 3.74952C7.185 3.5088 7.15903 3.3249 7.12726 3.14191H3.66582Z"
+                                fill="black"/>
+                        </svg>
+                    </a>
+                    <a class="btm-svg" href="https://wa.me/89651255775">
+                        <svg width="35" height="35" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.23849 4.32616C5.14915 4.28134 4.70967 4.06537 4.62786 4.03529C4.54574 4.00551 4.48618 3.99077 4.42632 4.08041C4.36706 4.16974 4.1956 4.37098 4.14356 4.43054C4.09152 4.4904 4.03918 4.49762 3.94985 4.4531C3.86051 4.40798 3.57234 4.31383 3.23093 4.00942C2.96532 3.77238 2.78574 3.4797 2.7337 3.39006C2.68166 3.30072 2.72828 3.2523 2.7728 3.20778C2.81311 3.16777 2.86244 3.1034 2.90696 3.05136C2.95178 2.99902 2.96652 2.96172 2.9966 2.90186C3.02638 2.8423 3.01164 2.79026 2.98908 2.74544C2.96652 2.70062 2.78784 2.26055 2.71354 2.08157C2.64075 1.9074 2.56705 1.93117 2.51231 1.92816C2.45518 1.92588 2.39802 1.92488 2.34085 1.92515C2.28129 1.92515 2.18443 1.94741 2.10261 2.03705C2.0208 2.12639 1.78978 2.34267 1.78978 2.78274C1.78978 3.22252 2.11013 3.64755 2.15465 3.70741C2.19947 3.76697 2.78514 4.66998 3.68183 5.05711C3.8951 5.14916 4.06144 5.20421 4.19139 5.24512C4.40556 5.3134 4.60048 5.30377 4.75419 5.28061C4.92595 5.25504 5.28301 5.06433 5.3576 4.85558C5.4322 4.64682 5.4322 4.46784 5.40964 4.43054C5.38738 4.39324 5.32813 4.37098 5.23849 4.32616ZM3.60753 6.55301H3.60633C3.07384 6.55305 2.55114 6.40988 2.09299 6.1385L1.9844 6.07413L0.859094 6.36952L1.1593 5.27219L1.08861 5.15969C0.790944 4.6857 0.633473 4.13716 0.634394 3.57746C0.634695 1.93809 1.96876 0.604326 3.60873 0.604326C4.40285 0.604326 5.14945 0.914153 5.71075 1.47605C5.98769 1.75177 6.2072 2.07968 6.35657 2.4408C6.50595 2.80192 6.58222 3.18908 6.58097 3.57987C6.58007 5.21925 5.24631 6.55301 3.60753 6.55301ZM6.13819 1.04921C5.80676 0.7156 5.41242 0.451078 4.97802 0.270976C4.54361 0.0908741 4.07779 -0.00122615 3.60753 1.23262e-05C1.63577 1.23262e-05 0.0309827 1.6048 0.0300803 3.57716C0.0300803 4.20765 0.19462 4.82309 0.507756 5.36544L0 7.21929L1.89656 6.72176C2.42104 7.0075 3.00876 7.15725 3.60603 7.15732H3.60753C5.57899 7.15732 7.18408 5.55254 7.18498 3.57987C7.18644 3.1098 7.09467 2.6441 6.91499 2.20972C6.73531 1.77534 6.47129 1.3809 6.13819 1.04921Z"
+                                fill="black"/>
+                        </svg>
+                    </a>
+                </div>
+                <ul class="s12-contacts flex column center">
+                    <li>По всем вопросам пишите:</li>
+                    <li>Арцегова София Игоревна</li>
+                    <li>artenglish@internet.ru</li>
+                </ul>
+            </div>
+            <div class="s12-card" style="display: flex; align-items: center; align-content: center; justify-content: flex-end; flex-direction: column">
+                <p class="s12_text">©Все права защищены</p>
+                <p style="font-family: 'Cabin Sketch',sans-serif; text-align: center;">ИНН: 771780159595</p>
+            </div>
+        </div>
+    </div>
 </main>
 
-<app-learn-time [Rule]="this.InputRule" [time]="this.InputTime" [time_name]="this.InputTimeName" id="learn-page" class="open-time-learn"></app-learn-time>
+<app-learn-time [Rule]="this.InputRule" [time]="this.InputTime" [time_name]="this.InputTimeName" id="learn-page"
+                class="open-time-learn"></app-learn-time>
 <app-payment id="payment-page" class="payment"></app-payment>

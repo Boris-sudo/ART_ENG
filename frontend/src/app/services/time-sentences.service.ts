@@ -309,6 +309,7 @@ export class TimeSentencesService {
 			"ever",
 			"never",
 			"just",
+			"today",
 			"already",
 			"before",
 			"lately",

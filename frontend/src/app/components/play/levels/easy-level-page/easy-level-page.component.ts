@@ -129,7 +129,7 @@ export class EasyLevelPageComponent implements OnInit {
 					let value=this.deleteSigns(document.getElementById(this.changeIDs[i][j]).value);
 					console.log(value);
 					for (let k = 0; k < this.timeSentencesService.words[this.indexes[i]].length; k++)
-						if (this.timeSentencesService.words[this.indexes[i]][k]==value)
+						if (this.deleteSigns(this.timeSentencesService.words[this.indexes[i]][k])==value)
 							found=true;
 				}
 

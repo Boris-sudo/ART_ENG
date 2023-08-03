@@ -163,7 +163,10 @@ export class LearnTimeServiceService {
         "Has - he , she , it",
       ],
       timeWords: [
-        "since - с тех пор как",
+        "for-в течение",
+        "since-с какого-то момента",
+        "recently-недавно",
+        "lately-в последнее время ",
       ],
     },
     PastSimple: {
@@ -209,7 +212,7 @@ export class LearnTimeServiceService {
         "did",
         "️Ved / V2",
         ],
-      timeWords: [
+      timeWords:  [
         "yesterday – вчера",
         "the day before yesterday – позавчера",
         "last week/month/year/weekend – на прошлой неделе/в прошлом месяце/в прошлом году/в прошлые выходные",

@@ -26,11 +26,11 @@ export class EasyLevelPageComponent implements OnInit {
 	public indexes: number[]=[]; // индексы времен в allTimes
 	public newClicks: number=0; // 0-проверить; 1-сгенерировать
 	// обнуляется
-	public sentences: string[][] = [[], [], []];
-	public disabled: boolean[][] = [[true, true, true, true], [true, true, true, true], [true, true, true, true]];
-	private changeNumber: number[][] = [[], [], []];
-	private changeIDs: string[][] = [[], [], []];
-	public selectValues: string[]=["...", "...", "..."];
+	public sentences: string[][] = [[], [], [],[], [], [],[], [], [],[], [], [],];
+	public disabled: boolean[][] = [[true, true, true, true], [true, true, true, true], [true, true, true, true],[true, true, true, true], [true, true, true, true], [true, true, true, true],[true, true, true, true], [true, true, true, true], [true, true, true, true],[true, true, true, true], [true, true, true, true], [true, true, true, true],];
+	private changeNumber: number[][] = [[], [], [],[], [], [],[], [], [],[], [], [],];
+	private changeIDs: string[][] = [[], [], [],[], [], [],[], [], [],[], [], [],];
+	public selectValues: string[]=["...", "...", "...","...", "...", "...","...", "...", "...","...", "...", "...",];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -104,12 +104,14 @@ export class EasyLevelPageComponent implements OnInit {
 				if (this.changeNumber[i][j]==0) {
 					// @ts-ignore
 					let value=document.getElementById(this.changeIDs[i][j]).value;
+					console.log(value);
 					if (value.toLowerCase() == this.times[i].toLowerCase())
 						found=true;
 				}
 				else if (this.changeNumber[i][j]==1) {
 					// @ts-ignore
 					let value=this.deleteSigns(document.getElementById(this.changeIDs[i][j]).value);
+					console.log(value);
 					for (let k = 0; k < this.timeSentencesService.structure[this.indexes[i]].length; k++)
 						if (this.timeSentencesService.structure[this.indexes[i]][k]==value)
 							found=true;
@@ -117,6 +119,7 @@ export class EasyLevelPageComponent implements OnInit {
 				else if (this.changeNumber[i][j]==2) {
 					// @ts-ignore
 					let value=document.getElementById(this.changeIDs[i][j]).value;
+					console.log(value);
 					for (let k = 0; k < this.timeSentencesService.sentences[this.indexes[i]].length; k++)
 						if (this.timeSentencesService.sentences[this.indexes[i]][k]==value)
 							found=true;
@@ -124,6 +127,7 @@ export class EasyLevelPageComponent implements OnInit {
 				else if (this.changeNumber[i][j]==3) {
 					// @ts-ignore
 					let value=this.deleteSigns(document.getElementById(this.changeIDs[i][j]).value);
+					console.log(value);
 					for (let k = 0; k < this.timeSentencesService.words[this.indexes[i]].length; k++)
 						if (this.timeSentencesService.words[this.indexes[i]][k]==value)
 							found=true;
@@ -133,6 +137,9 @@ export class EasyLevelPageComponent implements OnInit {
 					result = false;
 					// @ts-ignore
 					document.getElementById(this.changeIDs[i][j]).style.background='#ff1818';
+				} else {
+					// @ts-ignore
+					document.getElementById(this.changeIDs[i][j]).style.background='transparent';
 				}
 			}
 		}

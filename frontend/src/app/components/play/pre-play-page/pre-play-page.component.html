@@ -1,7 +1,7 @@
 <div class="s3_main flex center column">
   <div class="s3_field">
     <div class="s3_upslide">
-      <p class="text">Вы можете выбрать ещё больше времён, которые будут учавствовать в игре.</p>
+      <p class="text">Вы можете выбрать ещё больше времён, которые будут участвовать в игре.</p>
       <div class="times_container flex row wrap center">
         <div class="time_card flex center" [id]="time" (click)="addChosen(time)" [class.chosen]="isTimeChosen(time)" *ngFor="let time of allTimes;">
           <p>{{time}}</p>

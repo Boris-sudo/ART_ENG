@@ -125,7 +125,7 @@ export class StartPageComponent implements OnInit {
 	) {
 	}
 
-	ngOnInit(): void {
+	ngOnInit(): void {  
 		this.profileApi.get().subscribe(
 			response => {
 				const current = new Date;

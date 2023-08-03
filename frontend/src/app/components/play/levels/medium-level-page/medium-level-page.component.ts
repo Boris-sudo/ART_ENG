@@ -193,7 +193,6 @@ export class MediumLevelPageComponent implements OnInit {
 				while (findStr(this.timeSentencesService.sentences[random_time][random_sentence], this.sentences[i])) random_sentence=getRandomInt(6);
 				this.sentences[i].push(this.timeSentencesService.sentences[random_time][random_sentence]);
 			}
-			this.sentences[i].sort(() => Math.random() - 0.5);
 
 			//setting values to inputs
 			// @ts-ignore

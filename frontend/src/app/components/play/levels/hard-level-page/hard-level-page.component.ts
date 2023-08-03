@@ -194,7 +194,6 @@ export class HardLevelPageComponent implements OnInit {
 			// getting random sentences
 			let random_sentence = getRandomInt(6);
 			result_sentence=this.timeSentencesService.sentences[this.indexes[i]][random_sentence];
-			this.sentences[i].push(this.timeSentencesService.sentences[this.indexes[i]][random_sentence]);
 			for (let j = 0; j < 4; j++) {
 				let random_time = getRandomInt(12);
 				while (random_time == this.indexes[i]) random_time = getRandomInt(12);

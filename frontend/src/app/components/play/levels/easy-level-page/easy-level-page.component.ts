@@ -220,10 +220,9 @@ export class EasyLevelPageComponent implements OnInit {
 				if (this.changeNumber[i][j]==2) {
 					this.sentences[i].sort(() => Math.random() - 0.5);
 					this.selectValues[i] = '...';
-				}
-				else {
+				}else {
 					// @ts-ignore
-					document.getElementById(this.changeIDs[i][j]).value = '';
+					document.getElementById(this.changeIDs[i][j]).style.background='transparent';
 				}
 			}
 			// @ts-ignore

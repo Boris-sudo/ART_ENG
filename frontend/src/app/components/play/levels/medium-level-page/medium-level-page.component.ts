@@ -135,7 +135,7 @@ export class MediumLevelPageComponent implements OnInit {
 					document.getElementById(this.changeIDs[i][j]).style.background='#ff1818';
 				}else {
 					// @ts-ignore
-					document.getElementById(this.changeIDs[i][j]).value = '';
+					document.getElementById(this.changeIDs[i][j]).style.background='transparent';
 				}
 			}
 		}
@@ -176,7 +176,7 @@ export class MediumLevelPageComponent implements OnInit {
 		for (let i = 0; i < this.times.length; i++) {
 			let result_sentence:string='';
 			// getting random active inputs
-			for (let j = 0; j < 3; j++) {
+			for (let j = 0; j < 2; j++) {
 				let index=getRandomInt(4);
 				while (findNum(index, this.changeNumber[i])) index=getRandomInt(4);
 

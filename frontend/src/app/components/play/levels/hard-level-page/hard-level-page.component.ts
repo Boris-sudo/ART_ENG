@@ -136,7 +136,7 @@ export class HardLevelPageComponent implements OnInit {
 					document.getElementById(this.changeIDs[i][j]).style.background='#ff1818';
 				}else {
 					// @ts-ignore
-					document.getElementById(this.changeIDs[i][j]).value = '';
+					document.getElementById(this.changeIDs[i][j]).style.background='transparent';
 				}
 			}
 		}
@@ -176,9 +176,8 @@ export class HardLevelPageComponent implements OnInit {
 
 		for (let i = 0; i < this.times.length; i++) {
 			let result_sentence:string='';
-			let visible_input=0;
 			// getting random active inputs
-			for (let j = 0; j < 1; j++) {
+			for (let j = 0; j < 3; j++) {
 				let index=getRandomInt(4);
 				while (findNum(index, this.changeNumber[i])) index=getRandomInt(4);
 
@@ -186,17 +185,11 @@ export class HardLevelPageComponent implements OnInit {
 				// setting active inputs abled
 				this.disabled[i][index]=false;
 			}
-			// getting random visible input
-			for (let j = 0; j < 1; j++) {
-				let index=getRandomInt(4);
-				while (findNum(index, this.changeNumber[i])) index=getRandomInt(4);
-				visible_input=index;
-			}
-
 
 			// getting random sentences
 			let random_sentence = getRandomInt(6);
 			result_sentence=this.timeSentencesService.sentences[this.indexes[i]][random_sentence];
+			this.sentences[i].push(this.timeSentencesService.sentences[this.indexes[i]][random_sentence]);
 			for (let j = 0; j < 4; j++) {
 				let random_time = getRandomInt(12);
 				while (random_time == this.indexes[i]) random_time = getRandomInt(12);
@@ -204,6 +197,15 @@ export class HardLevelPageComponent implements OnInit {
 				while (findStr(this.timeSentencesService.sentences[random_time][random_sentence], this.sentences[i])) random_sentence=getRandomInt(6);
 				this.sentences[i].push(this.timeSentencesService.sentences[random_time][random_sentence]);
 			}
+
+			//setting values to inputs
+			// @ts-ignore
+			document.getElementById(this.times[i]).value=this.times[i];
+			// @ts-ignore
+			document.getElementById('structure'+this.times[i]).value=this.timeSentencesService.structure[this.indexes[i]][0];
+			this.selectValues[i]='';
+			// @ts-ignore
+			document.getElementById('word'+this.times[i]).value=this.timeSentencesService.words[this.indexes[i]][0];
 
 			//setting void values for chosen inputs
 			for (let j = 0; j < this.changeNumber[i].length; j++) {
@@ -220,8 +222,6 @@ export class HardLevelPageComponent implements OnInit {
 					// @ts-ignore
 					document.getElementById(this.changeIDs[i][j]).value = '';
 				}
-				// @ts-ignore
-				document.getElementById(this.changeIDs[i][j]).style.background='#696969';
 			}
 		}
 	}

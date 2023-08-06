@@ -210,9 +210,10 @@ export class EasyLevelPageComponent implements OnInit {
 			// @ts-ignore
 			document.getElementById('word'+this.times[i]).value=this.timeSentencesService.words[this.indexes[i]][0];
 
+			console.log(this.changeNumber);
 			//setting void values for chosen inputs
 			for (let j = 0; j < this.changeNumber[i].length; j++) {
-				if (this.changeNumber[i][j]==0) this.changeIDs[i].push(''+this.times[i]);
+				if (this.changeNumber[i][j]==0) this.changeIDs[i].push(this.times[i]);
 				else if (this.changeNumber[i][j]==1) this.changeIDs[i].push('structure'+this.times[i]);
 				else if (this.changeNumber[i][j]==2) this.changeIDs[i].push('sentence'+this.times[i]);
 				else if (this.changeNumber[i][j]==3) this.changeIDs[i].push('word'+this.times[i]);
@@ -220,13 +221,12 @@ export class EasyLevelPageComponent implements OnInit {
 				if (this.changeNumber[i][j]==2) {
 					this.sentences[i].sort(() => Math.random() - 0.5);
 					this.selectValues[i] = '...';
-				}else {
+				} else {
 					// @ts-ignore
-					document.getElementById(this.changeIDs[i][j]).style.background='transparent';
+					document.getElementById(this.changeIDs[i][j]).value='';
 				}
 			}
-			// @ts-ignore
-			console.log(document.getElementById('sentence'+this.times[i]).value);
+			console.log(this.changeIDs);
 		}
 	}
 	new() {

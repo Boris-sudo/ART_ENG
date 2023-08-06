@@ -256,8 +256,8 @@ export class LearnTimeServiceService {
 
       rules: [
         "was/were + Ving",
-        "Were - I , we , you , they",
-        "Was - he , she , it",
+        "Were - we , you , they",
+        "Was - I , he , she , it",
         ],
       timeWords: [
         "at that moment - в тот момент",
@@ -284,7 +284,7 @@ export class LearnTimeServiceService {
         rule: ["They had not played tennis before the class started.",],
       },
       Question: {
-        sentence: ["Had + мест) + Ved/V3?",],
+        sentence: ["Had + мест + Ved/V3?",],
         rule: ["Had they played tennis before the class started?",],
       },
 

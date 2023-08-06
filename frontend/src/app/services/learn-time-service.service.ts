@@ -7,7 +7,7 @@ const LENGTH=12;
   providedIn: 'root'
 })
 export class LearnTimeServiceService {
-  private timesArray:timesToLearn={
+  private timesArray:timesToLearn = {
     PresentSimple: {
       time: "Present Simple - «настоящее простое»",
       whenUses: [
@@ -93,7 +93,7 @@ export class LearnTimeServiceService {
         "currently - в настоящее время",
       ],
     },
-    PresentPerfect: {
+    PresentPerfect:   {
       time: "Present Perfect - «настоящее совершенное»",
       whenUses: [
         "Действие совершилось, виден результат",
@@ -140,7 +140,7 @@ export class LearnTimeServiceService {
       time: "Present Perfect Continuous - «настоящее длительное совершенное»",
       whenUses: [
         "Действие началось в прошлом, длилось какое - то время и все еще продолжается в настоящем",
-        "Действие закончилось недавно и сейчас виден его результат",
+        "Действие длилось какое-то время (длительность – это важно), и виден результат",
       ],
 
       Positive: {
@@ -157,10 +157,10 @@ export class LearnTimeServiceService {
       },
 
       rules: [
-        "Present perfect continuous + (since + past simple)",
         "have/has + been + Ving",
         "Have - I , we , you , they",
         "Has - he , she , it",
+        "Present perfect continuous + (since + past simple)",
       ],
       timeWords: [
         "for-в течение",
@@ -179,38 +179,32 @@ export class LearnTimeServiceService {
 
       Positive: {
         sentence: [
-          "мест. (I, we, you, they) + Ved/V2",
-          "мест. (he, she, it) + Ved/V2"
+          "мест. + Ved/V2"
         ],
         rule: [
           "They played tennis yesterday.",
-          "He played tennis yesterday."
         ],
       },
       Negative: {
         sentence: [
-          "мест. (I, we, you, they) + did + not + V",
-          "мест. (he, she, it) + did + not + V",
+          "мест. + did + not + V",
         ],
         rule: [
           "They did not play tennis yesterday.",
-          "He did not play tennis yesterday.",
         ],
       },
       Question: {
         sentence: [
-          "Did + мест. (I, we, you, they) + V",
-          "Did + мест. (he, she, it) + V",
+          "Did + мест. + V",
         ],
         rule: [
           "Did they play tennis yesterday?",
-          "Did he play tennis yesterday?",
         ],
       },
 
       rules: [
-        "did",
         "️Ved / V2",
+        "did",
         ],
       timeWords:  [
         "yesterday – вчера",
@@ -255,15 +249,15 @@ export class LearnTimeServiceService {
           "Was + мест. (he, she, it) + Ving",
         ],
         rule: [
-          "Were they playing tennis now?",
-          "Was he playing tennis now?",
+          "Were they playing tennis at that moment?",
+          "Was he playing tennis at that moment?",
         ],
       },
 
       rules: [
         "was/were + Ving",
-        "Was - I , we , you , they",
-        "Were - he , she , it",
+        "Were - I , we , you , they",
+        "Was - he , she , it",
         ],
       timeWords: [
         "at that moment - в тот момент",
@@ -282,16 +276,16 @@ export class LearnTimeServiceService {
       ],
 
       Positive: {
-        sentence: ["мест (I, we, you, they) + had + Ved/V3","мест (he, she, it) + had + Ved/V3"],
-        rule: ["They had played tennis before the class started.","He had played tennis before the class started."],
+        sentence: ["мест + had + Ved/V3",],
+        rule: ["They had played tennis before the class started.",],
       },
       Negative: {
-        sentence: ["мест (I, we, you, they) + had + not + Ved/V3","мест (he, she, it) + had + not + Ved/V3"],
-        rule: ["They had not played tennis before the class started.","He had not played tennis before the class started."],
+        sentence: ["мест + had + not + Ved/V3",],
+        rule: ["They had not played tennis before the class started.",],
       },
       Question: {
-        sentence: ["Had + мест (I, we, you, they) + Ved/V3?","Had + мест (he, she, it) + Ved/V3?"],
-        rule: ["Had they played tennis before the class started?","Had he played tennis before the class started?"],
+        sentence: ["Had + мест) + Ved/V3?",],
+        rule: ["Had they played tennis before the class started?",],
       },
 
       rules: [
@@ -319,7 +313,7 @@ export class LearnTimeServiceService {
       },
       Negative: {
         sentence: ["мест + had + not + been + Ving"],
-        rule: ["He has not been playing tennis for two hours."],
+        rule: ["He had not been playing tennis for two hours."],
       },
       Question: {
         sentence: ["Had + мест. + been + Ving?"],
@@ -431,8 +425,7 @@ export class LearnTimeServiceService {
       },
 
       rules: [
-        "will + have",
-        "Ved/V3",
+        "will + have + Ved/V3",
       ],
       timeWords: [
         "by - к какому - то времени/моменту",
@@ -463,7 +456,7 @@ export class LearnTimeServiceService {
       },
 
       rules: [
-        "мест + will + have been + Ving",
+        "will + have been + Ving",
       ],
       timeWords: [
         "till – до того как (только в отрицательных предложениях)",

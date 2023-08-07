@@ -291,4 +291,5 @@ export class StartPageComponent implements OnInit {
 		}, 10)
 	}
 
+
 }

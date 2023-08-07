@@ -13,6 +13,15 @@ import {UserModel} from "../../models/UserModel";
 export class StartPageComponent implements OnInit {
 	public times: string[] = [
 		"Present Simple",
+		"Present Simple",
+		"Present Simple",
+		"Present Simple",
+		"Present Simple",
+		"Present Simple",
+		"Present Simple",
+		"Present Simple",
+		"Present Simple",
+		"Present Simple",
 		"Present Continuous",
 		"Present Perfect",
 		"Present Perfect Continuous",
@@ -125,7 +134,7 @@ export class StartPageComponent implements OnInit {
 	) {
 	}
 
-	ngOnInit(): void {  
+	ngOnInit(): void {
 		this.profileApi.get().subscribe(
 			response => {
 				const current = new Date;

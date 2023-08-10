@@ -70,21 +70,7 @@ export class RegistrationPageComponent implements OnInit {
 
 			this.registration_service.create(data).subscribe(
 				response => {
-					setTimeout(function(profile_service, router) {
-						let date = new Date;
-						let timestamp = date.getTime();
-
-						console.log(timestamp);
-						profile_service.post({"date_paid": timestamp/1000}).subscribe(
-							response => {
-								console.log(response);
-								window.location.reload();
-								router.navigate(['/profile']);
-							}, error => {
-								console.log(error);
-							}
-						)
-					}, 100, this.profile_service, this.router)
+					this.router.navigate(['/pay']);
 				},
 				error => {
 

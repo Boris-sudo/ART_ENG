@@ -19,6 +19,7 @@ import {HardLevelPageComponent} from './components/play/levels/hard-level-page/h
 import { PaymentComponent } from './components/payment/payment.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import {NgOptimizedImage} from "@angular/common";
+import { PayPageComponent } from './components/pay-page/pay-page.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +36,8 @@ import {NgOptimizedImage} from "@angular/common";
 		MediumLevelPageComponent,
 		HardLevelPageComponent,
   PaymentComponent,
-  ProfilePageComponent
+  ProfilePageComponent,
+  PayPageComponent
 	],
 	imports: [
 		HttpClientModule,

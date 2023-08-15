@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.urls import include, path
 from app.router import HybridRouter
-from app.views import RegisterAPI, LoginAPI, ProfileApi, LogoutApi, ItemsViewSet
+from app.views import RegisterAPI, LoginAPI, ProfileApi, LogoutApi, PaymentViewSet, NotificationAPI
 
 router = HybridRouter()
-router.register(r'items', ItemsViewSet, basename="Items")
+
+router.register("payments", PaymentViewSet, basename="Payment")
+router.add_api_view("notification", NotificationAPI.as_view())
 
 router.add_api_view("profile", ProfileApi.as_view())
 router.add_api_view("register", RegisterAPI.as_view())

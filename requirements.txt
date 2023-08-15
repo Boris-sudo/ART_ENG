@@ -7,3 +7,4 @@ django-jazzmin==2.6.0
 django-browser-reload==1.8.0
 django-rest-knox==4.2.0
 sentry-sdk==1.28.1
+yookassa==2.4.0

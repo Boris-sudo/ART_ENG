@@ -1,40 +1,25 @@
 from django.contrib.auth.models import User
-from app.models import Items, Value, Profile
+from django.conf import settings
+from app.models import Payment, Profile
 from rest_framework import serializers
 from django.core import exceptions
 import django.contrib.auth.password_validation as validators
-from django.utils import timezone
-from datetime import datetime
+from yookassa import Payment as PaymentAPI
+import uuid
 
 
-class ValueSerializer(serializers.StringRelatedField):
-    def to_internal_value(self, data):
-        print(type(data))
-
-
-class ItemsSerializer(serializers.HyperlinkedModelSerializer):
-    values = serializers.SerializerMethodField()
-
+class PaymentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Items
-        fields = ['id', 'values']
-        related_object = 'value'
-
-    def update(self, instance, validated_data):
-        instance.value_set.all().delete()
-        for value in validated_data.get("values"):
-            Value.objects.create(items=instance, value=value)
-        return instance
+        model = Payment
+        fields = ['id', 'status', 'created_at']
+        read_only_fields = ['id', 'status', 'created_at']
 
     def create(self, validated_data):
-        values = validated_data.pop("values", [])
-        instance = Items.objects.create(**validated_data)
-        for value in values:
-            Value.objects.create(items=instance, value=value)
-        return instance
+        payment = PaymentAPI.create(settings.YOOKASSA_PAYMENT_DATA, uuid.uuid4())
+        validated_data.update({'id': payment.id,
+                               'redirect_url': payment.confirmation.confirmation_url})
 
-    def get_values(self, items: Items):
-        return list(map(str, Value.objects.filter(items=items)))
+        return Payment.objects.create(**validated_data)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -43,17 +28,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'date_paid']
-        read_only_fields = ['id', 'email']
-
-    def update(self, instance, validated_data):
-        print(validated_data)
-        timestamp = validated_data.pop("date_paid", None)
-        if timestamp:
-            profile = self.get_profile(instance)
-            profile.date_paid = datetime.fromtimestamp(timestamp, tz=timezone.get_default_timezone())
-            profile.save()
-        super().update(instance, validated_data)
-        return instance
+        read_only_fields = ['id', 'email', 'date_paid']
 
     def get_profile(self, instance: User):
         return Profile.objects.get(user=instance)

@@ -7,7 +7,12 @@ class Profile(models.Model):
         verbose_name_plural = "Профили"
 
     user = models.OneToOneField("auth.User", on_delete=models.CASCADE, verbose_name="Пользователь")
-    date_paid = models.DateTimeField(blank=True, null=True, verbose_name="Дата покупки")
+
+    @property
+    def date_paid(self):
+        payment = Payment.objects.filter(user=self.user, status=Payment.Status.SUCCEEDED).last()
+        if payment:
+            return payment.created_at
 
 
 class Items(models.Model):
@@ -31,3 +36,30 @@ class Value(models.Model):
 
     def __str__(self):
         return self.value
+
+
+class Payment(models.Model):
+    class Meta:
+        verbose_name = "Платёж"
+        verbose_name_plural = "Платежы"
+
+    class Status(models.IntegerChoices):
+        PENDING = 0
+        WAITING_FOR_CAPTURE = 1
+        SUCCEEDED = 2
+        CANCELED = 3
+
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE, verbose_name="Пользователь")
+
+    id = models.CharField(max_length=100, primary_key=True, unique=True, verbose_name="Id платежа")
+    status = models.IntegerField(default=Status.PENDING, choices=Status.choices, verbose_name="Статус")
+    redirect_url = models.CharField(max_length=100, verbose_name="Редирект")
+
+    created_at = models.DateTimeField(auto_now=True, verbose_name="Дата создания")
+
+    def __str__(self):
+        return f"{self.user}: {self.status} - {self.created_at}"
+
+    @property
+    def is_succeeded(self) -> bool:
+        return self.status == Payment.Status.SUCCEEDED

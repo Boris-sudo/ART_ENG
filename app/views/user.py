@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions, views
+from rest_framework import generics, permissions, views, status
 from rest_framework.response import Response
 from knox.models import AuthToken
 from app.serializers import UserSerializer, RegisterSerializer
@@ -6,7 +6,6 @@ from django.contrib.auth import login, logout
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 from rest_framework.settings import api_settings
-from rest_framework import status
 
 
 class ProfileApi(generics.GenericAPIView):
@@ -17,15 +16,9 @@ class ProfileApi(generics.GenericAPIView):
         return Response(self.get_serializer(request.user).data)
 
     def post(self, request):
-        user = request.user
-        data = {}
-        for key, value in request.data.items():
-            if value:
-                data[key] = value
-        date_paid = data["date_paid"] if "date_paid" in data else None
-        serializer = self.get_serializer(user, data=data, partial=True)
+        serializer = self.get_serializer(request.user, data=request.data, partial=True)
         if serializer.is_valid():
-            serializer.save(date_paid=date_paid)
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

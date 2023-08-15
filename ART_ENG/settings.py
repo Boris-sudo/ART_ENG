@@ -198,3 +198,23 @@ if SENTRY:
         # django.contrib.auth) you may enable sending PII data.
         send_default_pii=True
     )
+
+
+from yookassa import Configuration
+
+Configuration.account_id = os.environ.get("YOOKASSA_ACCOUNT_ID", None)
+Configuration.secret_id = os.environ.get("YOOKASSA_SECRET_ID", None)
+
+
+YOOKASSA_PAYMENT_DATA = {
+    "amount": {
+        "value": "499.00",
+        "currency": "RUB"
+    },
+    "confirmation": {
+        "type": "redirect",
+        "return_url": "https://arteng.site/"
+    },
+    "capture": True,
+    "description": "Оплата за услуги ArtEng"
+}

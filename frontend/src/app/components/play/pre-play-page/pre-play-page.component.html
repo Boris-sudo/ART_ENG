@@ -1,16 +1,19 @@
 <div class="s3_main flex center column">
   <div class="s3_field">
     <div class="s3_upslide">
-      <p class="text">Вы можете выбрать ещё больше времён, которые будут учавствовать в игре.</p>
+      <p class="text">Вы можете выбрать ещё больше времён, которые будут участвовать в игре.</p>
       <div class="times_container flex row wrap center">
-        <div class="time_card flex center" [id]="time" (click)="addChosen(time)" [class.chosen]="isTimeChosen(time)" *ngFor="let time of allTimes;">
+        <div class="time_card flex center column" [id]="time" (click)="addChosen(time)" [class.chosen]="isTimeChosen(time)" *ngFor="let time of allTimes;">
           <p>{{time}}</p>
+          <p style="color: #fff;"
+             *ngIf="!this.islogged()&&(time=='Present Simple'||time=='Present Continuous')">
+            Доступно</p>
         </div>
       </div>
     </div>
 
     <div class="s3_bottomslide flex center">
-      <button (click)="play()" class="clr1 big-btn">Играть</button>
+      <button id="play-btn" (click)="play()" class="clr1 big-btn">Играть</button>
     </div>
   </div>
 </div>

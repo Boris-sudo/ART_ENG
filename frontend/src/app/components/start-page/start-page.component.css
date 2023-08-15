@@ -35,7 +35,7 @@ main {
 
 .button {
     position: absolute;
-    right: 20px;
+    left: 20px;
     top: 40%;
 }
 
@@ -154,6 +154,14 @@ main {
 .s1_bottomslide {
     padding: 13vh 0;
     width: 100%;
+    height: fit-content;
+}
+
+.btm-svg:hover {
+    transform: scale(120%);
+}
+.btm-svg {
+    transition-duration: .3s;
 }
 
 .s1_bottomslide .text {
@@ -179,56 +187,17 @@ main {
     width: 100%;
     background: linear-gradient(90deg, #FEC9D9 0%, #FC98B2 100%);
 }
-
-.s12_table {
-    display: table;
-    height: 300px;
-}
-
-.s12_left-slide {
-    display: table-cell;
+.s12-card {
+    width: fit-content;
     height: 100%;
-    width: 15em;
-    box-sizing: border-box;
-    vertical-align: middle;
-    padding: 1em 0;
-    margin: 0;
 }
-
-.s12_center-slide {
-    display: table-cell;
-    vertical-align: middle;
-    align-items: center;
-    height: 80%;
+@media screen and (max-width: 350px) {
+    .s12-card:first-child{height: 70%;}
+    .s12-card:last-child{height: 30%;}
+    .s12_table { justify-content: center!important; align-items: center!important; align-content: center!important;}
 }
-
-.s12_center-slide img {
-    width: min(100%, 200px);
-}
-
-.s12_right-slide {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-.s12_right-slide li:not(:first-child) {
-    margin-top: 10px;
-}
-
-.s12_contact_table {
-    font-size: 1.3em;
-    margin-bottom: 1.5em;
-    display: block;
-}
-
-.s12_policy {
-    text-align: center;
-    margin: 0;
-    width: 100%;
-    font-size: 1.3em;
-    color: #e0e0e0;
-    text-decoration: underline;
+.s12_table {
+    height: 200px;
 }
 
 .s12_text {
@@ -261,3 +230,7 @@ main {
     justify-content: flex-end;
 }
 
+.flex1 {
+    display: flex;
+    flex-direction: row;
+}

@@ -22,8 +22,9 @@
                         <span style="position:relative;">
                             <span (click)="showHint(i*3)" class="rounded-icon">❔</span>
                             <div class="hint" [id]="'hint'+i*3">
-                                <p style="font-size: .5em; text-align: center;">В поле для ввода введите, что самое важное в структуре каждого их времени</p>
-                                <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Форма to be + глагол + окончание</p>
+                                <p style="font-size: .5em; text-align: center;">В поле для ввода введите, что самое важное в структуре данного времени, в его образовании.</p>
+                                <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: to be + Ving</p>
+                                <p style="font-size: .5em; margin-top: 5px; text-align: center;">• обучение: рамка ❕❕Надо знать</p>
                             </div>
                         </span>
                     </p>
@@ -36,13 +37,14 @@
                         <span style="position:relative;">
                             <span (click)="showHint(i*3+1)" class="rounded-icon">❔</span>
                             <div class="hint flex center" [id]="'hint'+(i*3+1)">
-                                <p style="font-size: .5em; text-align: center;">Из данного вам списка выберите предложения, в котром используется такое же время, как и выбранное вами</p>
+                                <p style="font-size: .5em; text-align: center;">Из данного Вам списка выберите то предложение, которое характерно для выбранного времени и подходит под его структуру.</p>
+                                <p style="font-size: .5em; text-align: center;">• обучение: см. примеры утвердительных, отрицательных и вопросительных предложений.</p>
                             </div>
                         </span>
                     </p>
                     <div class="flex row1 space-around">
                         <div class="select-width">
-                            <select (change)="changeSelectedValue(i)" [value]="this.selectValues[i]" [id]="'sentence'+time" [disabled]="this.disabled[i][2]">
+                            <select [id]="'sentence'+time" [disabled]="this.disabled[i][2]">
                                 <option *ngIf="this.selectValues[i]=='...'">...</option>
                                 <option *ngFor="let sentence of sentences[i]">{{sentence}}</option>
                             </select>
@@ -51,12 +53,13 @@
                 </div>
                 <div class="s4_game-card flex column space-around wrap">
                     <p>
-                        Слово маркер время:
+                        Слово маркер времени:
                         <span style="position:relative;">
                             <span (click)="showHint(i*3+2)" class="rounded-icon">❔</span>
                             <div class="hint" [id]="'hint'+(i*3+2)">
-                                <p style="font-size: .5em; text-align: center;">В поле для ввода впишите слово, которое характеризиует выбранное вами время наиболее обще.</p>
-                                <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Present Continuous - сейчас</p>
+                                <p style="font-size: .5em; text-align: center;">В поле для ввода введите слово подсказку, которое будет являться указателем данного времени.</p>
+                                <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: now или сейчас</p>
+                                <p style="font-size: .5em; text-align: center;">• обучение: см. примеры утвердительных, отрицательных и вопросительных предложений.</p>
                             </div>
                         </span>
                     </p>

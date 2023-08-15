@@ -18,6 +18,8 @@ import {MediumLevelPageComponent} from './components/play/levels/medium-level-pa
 import {HardLevelPageComponent} from './components/play/levels/hard-level-page/hard-level-page.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import {NgOptimizedImage} from "@angular/common";
+import { PayPageComponent } from './components/pay-page/pay-page.component';
 
 @NgModule({
 	declarations: [
@@ -34,7 +36,8 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 		MediumLevelPageComponent,
 		HardLevelPageComponent,
   PaymentComponent,
-  ProfilePageComponent
+  ProfilePageComponent,
+  PayPageComponent
 	],
 	imports: [
 		HttpClientModule,
@@ -45,6 +48,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
+		NgOptimizedImage,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

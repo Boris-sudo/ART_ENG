@@ -60,8 +60,11 @@ export class TopBarComponent implements OnInit {
 				behavior: "smooth"
 			});
 		}
-		this.close_menu();
-		this.close_profile_menu();
+
+		setTimeout(function(close_menu, close_profile_menu) {
+			close_menu();
+			close_profile_menu();
+		}, 100, this.close_menu, this.close_profile_menu);
 	}
 
 	open_menu() {

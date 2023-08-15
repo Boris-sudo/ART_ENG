@@ -84,41 +84,18 @@ export class PrePlayPageComponent implements OnInit {
 	}
 
 	addChosen(time: string) {
-		console.log(this.islogged())
 		if (!this.islogged()&&(time!='Present Simple'&&time!='Present Continuous')) {
 			this.open_payment();
 			return;
 		} else {
-			console.log(2);
 			if (this.isTimeChosen(time)) {
 				for (let i = 0; i < this.chosenTimes.length; ++i)
 					if (this.chosenTimes[i] == time)
 						this.chosenTimes.splice(i, 1);
 			} else {
-				if (this.chosenTimes.length < 3)
-					this.chosenTimes.push(time);
-				else {
-					// @ts-ignore
-					document.getElementById(time).style.background = "#e13d3d";
-					setTimeout(function (time) {
-						// @ts-ignore
-						document.getElementById(time).style.background = "#FFD6E1";
-					}, 200, time);
-				}
+				this.chosenTimes.push(time);
 			}
 		}
-	}
-
-	getIndexes(): string {
-		let res = "";
-		for (let i = 0; i < this.chosenTimes.length; i++)
-			for (let j = 0; j < this.allTimes.length; j++)
-				if (this.chosenTimes[i] == this.allTimes[j]) {
-					if (j < 10) res += "0";
-					res += String(j);
-					break;
-				}
-		return res;
 	}
 
 	open_payment() {
@@ -133,6 +110,15 @@ export class PrePlayPageComponent implements OnInit {
 	}
 
 	play(): void {
+		if (this.chosenTimes.length==0) {
+			// @ts-ignore
+			document.getElementById('play-btn').style.background='#f11219';
+			setTimeout(function() {
+				// @ts-ignore
+				document.getElementById('play-btn').style.background='transparent';
+			}, 300)
+			return;
+		}
 		let result='';
 		for (let time of this.chosenTimes)
 			result+=time+',';

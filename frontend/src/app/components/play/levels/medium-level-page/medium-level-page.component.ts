@@ -26,11 +26,11 @@ export class MediumLevelPageComponent implements OnInit {
 	public indexes: number[]=[]; // индексы времен в allTimes
 	public newClicks: number=0; // 0-проверить; 1-сгенерировать
 	// обнуляется
-	public sentences: string[][] = [[], [], []];
-	public disabled: boolean[][] = [[true, true, true, true], [true, true, true, true], [true, true, true, true]];
-	private changeNumber: number[][] = [[], [], []];
-	private changeIDs: string[][] = [[], [], []];
-	public selectValues: string[]=["...", "...", "..."];
+	public sentences: string[][] = [[], [], [],[], [], [],[], [], [],[], [], [],];
+	public disabled: boolean[][] = [[true, true, true, true], [true, true, true, true], [true, true, true, true],[true, true, true, true], [true, true, true, true], [true, true, true, true],[true, true, true, true], [true, true, true, true], [true, true, true, true],[true, true, true, true], [true, true, true, true], [true, true, true, true],];
+	private changeNumber: number[][] = [[], [], [],[], [], [],[], [], [],[], [], [],];
+	private changeIDs: string[][] = [[], [], [],[], [], [],[], [], [],[], [], [],];
+	public selectValues: string[]=["...", "...", "...","...", "...", "...","...", "...", "...","...", "...", "...",];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -125,7 +125,7 @@ export class MediumLevelPageComponent implements OnInit {
 					// @ts-ignore
 					let value=this.deleteSigns(document.getElementById(this.changeIDs[i][j]).value);
 					for (let k = 0; k < this.timeSentencesService.words[this.indexes[i]].length; k++)
-						if (this.timeSentencesService.words[this.indexes[i]][k]==value)
+						if (this.deleteSigns(this.timeSentencesService.words[this.indexes[i]][k])==value)
 							found=true;
 				}
 
@@ -133,6 +133,9 @@ export class MediumLevelPageComponent implements OnInit {
 					result = false;
 					// @ts-ignore
 					document.getElementById(this.changeIDs[i][j]).style.background='#ff1818';
+				}else {
+					// @ts-ignore
+					document.getElementById(this.changeIDs[i][j]).style.background='transparent';
 				}
 			}
 		}
@@ -173,7 +176,7 @@ export class MediumLevelPageComponent implements OnInit {
 		for (let i = 0; i < this.times.length; i++) {
 			let result_sentence:string='';
 			// getting random active inputs
-			for (let j = 0; j < 3; j++) {
+			for (let j = 0; j < 2; j++) {
 				let index=getRandomInt(4);
 				while (findNum(index, this.changeNumber[i])) index=getRandomInt(4);
 
@@ -193,14 +196,13 @@ export class MediumLevelPageComponent implements OnInit {
 				while (findStr(this.timeSentencesService.sentences[random_time][random_sentence], this.sentences[i])) random_sentence=getRandomInt(6);
 				this.sentences[i].push(this.timeSentencesService.sentences[random_time][random_sentence]);
 			}
-			this.sentences[i].sort(() => Math.random() - 0.5);
 
 			//setting values to inputs
 			// @ts-ignore
 			document.getElementById(this.times[i]).value=this.times[i];
 			// @ts-ignore
 			document.getElementById('structure'+this.times[i]).value=this.timeSentencesService.structure[this.indexes[i]][0];
-			this.selectValues[i]=result_sentence;
+			this.selectValues[i]='';
 			// @ts-ignore
 			document.getElementById('word'+this.times[i]).value=this.timeSentencesService.words[this.indexes[i]][0];
 
@@ -211,7 +213,10 @@ export class MediumLevelPageComponent implements OnInit {
 				else if (this.changeNumber[i][j]==2) this.changeIDs[i].push('sentence'+this.times[i]);
 				else if (this.changeNumber[i][j]==3) this.changeIDs[i].push('word'+this.times[i]);
 
-				if (this.changeNumber[i][j]==2) this.selectValues[i]='...';
+				if (this.changeNumber[i][j]==2) {
+					this.sentences[i].sort(() => Math.random() - 0.5);
+					this.selectValues[i] = '...';
+				}
 				else {
 					// @ts-ignore
 					document.getElementById(this.changeIDs[i][j]).value = '';

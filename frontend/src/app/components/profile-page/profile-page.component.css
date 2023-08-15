@@ -10,6 +10,18 @@
     box-shadow: 2px 5px 20px rgba(119, 119, 119, 0.5);
 }
 
+.payment2 {
+    opacity: 0;
+    display: none;
+    transform: rotateX(90deg);
+    background: rgba(0,0,0,40%);
+    transition-duration: .5s;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 .logo {
     float: right;
     margin-right: 12px;

@@ -9,10 +9,12 @@ import uuid
 
 
 class PaymentSerializer(serializers.HyperlinkedModelSerializer):
+    status = serializers.SerializerMethodField('get_status_display')
+
     class Meta:
         model = Payment
-        fields = ['id', 'status', 'created_at']
-        read_only_fields = ['id', 'status', 'created_at']
+        fields = ['id', 'status', 'redirect_url', 'created_at']
+        read_only_fields = ['id', 'status', 'redirect_url', 'created_at']
 
     def create(self, validated_data):
         payment = PaymentAPI.create(settings.YOOKASSA_PAYMENT_DATA, uuid.uuid4())
@@ -20,6 +22,9 @@ class PaymentSerializer(serializers.HyperlinkedModelSerializer):
                                'redirect_url': payment.confirmation.confirmation_url})
 
         return Payment.objects.create(**validated_data)
+
+    def get_status_display(self, instance: Payment):
+        return instance.get_status_display()
 
 
 class UserSerializer(serializers.ModelSerializer):

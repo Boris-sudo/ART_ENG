@@ -204,35 +204,3 @@ from yookassa import Configuration
 
 Configuration.account_id = os.environ.get("YOOKASSA_ACCOUNT_ID", None)
 Configuration.secret_key = os.environ.get("YOOKASSA_SECRET_KEY", None)
-
-
-YOOKASSA_PAYMENT_DATA = {
-    "amount": {
-        "value": "499.00",
-        "currency": "RUB"
-    },
-    "confirmation": {
-        "type": "redirect",
-        "return_url": "https://arteng.site/"
-    },
-    "capture": True,
-    "description": "Оплата за услуги ArtEng",
-    "receipt": {
-        "customer": {
-            "email": "user@example.com"
-        },
-        "items": [
-            {
-                "description": "Оплата за услуги ArtEng",
-                "quantity": "1.00",
-                "amount": {
-                    "value": "499.00",
-                    "currency": "RUB"
-                },
-                "vat_code": "1",
-                "payment_mode": "full_prepayment",
-                "payment_subject": "commodity"
-            },
-        ]
-    }
-}

@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.conf import settings
 from app.models import Payment, Profile
 from rest_framework import serializers
 from django.core import exceptions
@@ -17,7 +16,37 @@ class PaymentSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = ['id', 'status', 'redirect_url', 'created_at']
 
     def create(self, validated_data):
-        payment = PaymentAPI.create(settings.YOOKASSA_PAYMENT_DATA, uuid.uuid4())
+        payment_data = {
+            "amount": {
+                "value": "499.00",
+                "currency": "RUB"
+            },
+            "confirmation": {
+                "type": "redirect",
+                "return_url": "https://arteng.site/"
+            },
+            "capture": True,
+            "description": "Оплата за услуги ArtEng",
+            "receipt": {
+                "customer": {
+                    "email": validated_data['user'].email or 'example@mail.com'
+                },
+                "items": [
+                    {
+                        "description": "Оплата за услуги ArtEng",
+                        "quantity": "1.00",
+                        "amount": {
+                            "value": "499.00",
+                            "currency": "RUB"
+                        },
+                        "vat_code": "1",
+                        "payment_mode": "full_prepayment",
+                        "payment_subject": "commodity"
+                    },
+                ]
+            }
+        }
+        payment = PaymentAPI.create(payment_data, uuid.uuid4())
         validated_data.update({'id': payment.id,
                                'redirect_url': payment.confirmation.confirmation_url})
 

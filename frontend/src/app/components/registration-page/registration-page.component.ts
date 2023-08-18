@@ -5,6 +5,9 @@ import {UserRegister} from "../../models/api/user-register.model";
 import {UserRegisterService} from "../../services/api/user-register.service";
 import {ProfileApiService} from "../../services/api/profile.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {PaymentModel} from "../../models/api/payment.class";
+import {PaymentService} from "../../services/api/payment.service";
+import {UserLogoutService} from "../../services/api/user-logout.service";
 
 @Component({
 	selector: 'app-registration-page',
@@ -18,6 +21,8 @@ export class RegistrationPageComponent implements OnInit {
 		private route: ActivatedRoute,
 		private registration_service: UserRegisterService,
 		private profile_service: ProfileApiService,
+		private payment_service: PaymentService,
+		private log_out_service: UserLogoutService,
 	) {
 	}
 
@@ -70,7 +75,13 @@ export class RegistrationPageComponent implements OnInit {
 
 			this.registration_service.create(data).subscribe(
 				response => {
-					this.router.navigate(['/pay']);
+					this.payment_service.post('').subscribe(
+						response2 => {
+							console.log(response2);
+						}, error=> {
+							console.log(error);
+						}
+					)
 				},
 				error => {
 

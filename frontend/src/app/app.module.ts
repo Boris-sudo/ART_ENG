@@ -16,10 +16,10 @@ import {LoginPageComponent} from './components/login-page/login-page.component';
 import {EasyLevelPageComponent} from './components/play/levels/easy-level-page/easy-level-page.component';
 import {MediumLevelPageComponent} from './components/play/levels/medium-level-page/medium-level-page.component';
 import {HardLevelPageComponent} from './components/play/levels/hard-level-page/hard-level-page.component';
-import { PaymentComponent } from './components/payment/payment.component';
-import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import {PaymentComponent} from './components/payment/payment.component';
+import {ProfilePageComponent} from './components/profile-page/profile-page.component';
 import {NgOptimizedImage} from "@angular/common";
-import { PayPageComponent } from './components/pay-page/pay-page.component';
+import {PayPageComponent} from './components/pay-page/pay-page.component';
 
 @NgModule({
 	declarations: [
@@ -35,9 +35,9 @@ import { PayPageComponent } from './components/pay-page/pay-page.component';
 		EasyLevelPageComponent,
 		MediumLevelPageComponent,
 		HardLevelPageComponent,
-  PaymentComponent,
-  ProfilePageComponent,
-  PayPageComponent
+		PaymentComponent,
+		ProfilePageComponent,
+		PayPageComponent
 	],
 	imports: [
 		HttpClientModule,

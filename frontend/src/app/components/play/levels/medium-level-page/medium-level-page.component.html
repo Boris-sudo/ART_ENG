@@ -12,7 +12,16 @@
         <div style="width: 100%; grid-row-gap: 30px; grid-column-gap: 40px;" class="flex column center">
             <div *ngFor="let time of this.times; let i = index" class="s4_game-part flex column center">
                 <div class="s4_game-card flex column space-around wrap">
-                    <p>Время:</p>
+                    <p>
+                        Время:
+                        <span style="position:relative;">
+                            <span (click)="showHint(i*4+3)" class="rounded-icon">❔</span>
+                            <div class="hint" [id]="'hint'+(i*4+3)">
+                                <p style="font-size: .5em; text-align: center;">В поле для ввода впишите время, которое соответствует характеристике, которая написана ниже.</p>
+                                <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: Present Continuous</p>
+                            </div>
+                        </span>
+                    </p>
                     <div class="flex row1 space-around">
                         <input [id]="time" value="" [disabled]="this.disabled[i][0]" autocomplete="off">
                     </div>
@@ -20,8 +29,8 @@
                 <div class="s4_game-card flex column space-around wrap">
                     <p>Самое важное в структуре:
                         <span style="position:relative;">
-                            <span (click)="showHint(i*3)" class="rounded-icon">❔</span>
-                            <div class="hint" [id]="'hint'+i*3">
+                            <span (click)="showHint(i*4)" class="rounded-icon">❔</span>
+                            <div class="hint" [id]="'hint'+i*4">
                                 <p style="font-size: .5em; text-align: center;">В поле для ввода введите, что самое важное в структуре данного времени, в его образовании.</p>
                                 <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: to be + Ving</p>
                                 <p style="font-size: .5em; margin-top: 5px; text-align: center;">• обучение: рамка ❕❕Надо знать</p>
@@ -35,8 +44,8 @@
                 <div class="s4_game-card flex column space-around wrap">
                     <p>Предложение:
                         <span style="position:relative;">
-                            <span (click)="showHint(i*3+1)" class="rounded-icon">❔</span>
-                            <div class="hint flex center" [id]="'hint'+(i*3+1)">
+                            <span (click)="showHint(i*4+1)" class="rounded-icon">❔</span>
+                            <div class="hint flex center" [id]="'hint'+(i*4+1)">
                                 <p style="font-size: .5em; text-align: center;">Из данного Вам списка выберите то предложение, которое характерно для выбранного времени и подходит под его структуру.</p>
                                 <p style="font-size: .5em; text-align: center;">• обучение: см. примеры утвердительных, отрицательных и вопросительных предложений.</p>
                             </div>
@@ -55,9 +64,9 @@
                     <p>
                         Слово маркер времени:
                         <span style="position:relative;">
-                            <span (click)="showHint(i*3+2)" class="rounded-icon">❔</span>
-                            <div class="hint" [id]="'hint'+(i*3+2)">
-                                <p style="font-size: .5em; text-align: center;">В поле для ввода введите слово подсказку, которое будет являться указателем данного времени.</p>
+                            <span (click)="showHint(i*4+2)" class="rounded-icon">❔</span>
+                            <div class="hint" [id]="'hint'+(i*4+2)">
+                                <p style="font-size: .5em; text-align: center;">В поле для ввода введите слово-подсказку, которое будет являться указателем данного времени.</p>
                                 <p style="font-size: .5em; margin-top: 5px; text-align: center;">Пример: now или сейчас</p>
                                 <p style="font-size: .5em; text-align: center;">• обучение: см. примеры утвердительных, отрицательных и вопросительных предложений.</p>
                             </div>

@@ -89,7 +89,7 @@ export class TimeSentencesService {
 			"Will he have been playing tennis tomorrow?",
 			"Will I have been playing tennis tomorrow?",
 		],
-	]
+	];
 	public structure: string[][] = [
 		[
 			"do/does+v",
@@ -206,7 +206,7 @@ export class TimeSentencesService {
 			"havebeenving",
 		],
 		[
-			"ved",
+			"did",
 			"didv",
 			"vedv2",
 			"v2ved",
@@ -251,7 +251,7 @@ export class TimeSentencesService {
 			"will have been+ving",
 			"willhavebeenving",
 		],
-	]
+	];
 	public words: string[][] = [
 		[
 			"обычно",
@@ -524,8 +524,8 @@ export class TimeSentencesService {
 			"by next year",
 			"when",
 		],
-	]
+	];
 
 	constructor() {
-	}
+	};
 }

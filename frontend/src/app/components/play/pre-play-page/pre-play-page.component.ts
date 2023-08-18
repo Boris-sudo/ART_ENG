@@ -55,17 +55,17 @@ export class PrePlayPageComponent implements OnInit {
 				const timestamp = current.getTime();
 				this.User = {
 					// @ts-ignore
-					date_paid: response.date_paid*1000,
+					date_paid: response.date_paid,
 					username: response.username,
 					email: response.email,
 					is_registered: true,
 				}
 				// @ts-ignore
-				let paid=new Date(this.User.date_paid);
+				let paid=new Date(this.User.date_paid*1000);
 				let curr=new Date;
 				let paid_num = paid.getDate();
 				let curr_num = curr.getDate();
-				this.User.is_valid_pay=(30-paid_num+curr_num)%30<=30;
+				this.User.is_valid_pay=(30-paid_num+curr_num)%30<=30&&this.User.date_paid!=null;
 			}, error => {
 			}
 		)

@@ -77,10 +77,8 @@ export class RegistrationPageComponent implements OnInit {
 				response => {
 					this.payment_service.post('').subscribe(
 						response2 => {
-							console.log(response2);
 							window.location.href=response2.redirect_url;
 						}, error=> {
-							console.log(error);
 						}
 					)
 				},

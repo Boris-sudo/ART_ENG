@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProfileApiService} from "../../services/api/profile.service";
 import {UserModel} from "../../models/UserModel";
+import {PaymentService} from "../../services/api/payment.service";
 
 @Component({
 	selector: 'app-payment',
@@ -17,6 +18,7 @@ export class PaymentComponent implements OnInit {
 		public router: Router,
 		public route: ActivatedRoute,
 		private profileApi: ProfileApiService,
+		private paymentService: PaymentService,
 	) {
 	}
 
@@ -48,7 +50,13 @@ export class PaymentComponent implements OnInit {
 
 	pay() {
 		if (!this.User.is_registered) this.router.navigate(['/register']);
-		else this.router.navigate(['/pay']);
+		else {
+			this.paymentService.post('').subscribe(
+				response=> {
+					window.location.href=response.redirect_url;
+				}
+			)
+		}
 	}
 	close_open_menu() {
 		// @ts-ignore

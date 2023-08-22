@@ -56,7 +56,7 @@ export class HardLevelPageComponent implements OnInit {
 			else time+=times_string[i];
 		}
 
-		// this.times.sort(() => Math.random() - 0.5);
+		this.times.sort(() => Math.random() - 0.5);
 		for (const time of this.times)
 			this.indexes.push(findIndex(time, this.allTimes))
 	}

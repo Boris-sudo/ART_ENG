@@ -26,7 +26,7 @@
                         <input [id]="time" value="" [disabled]="this.disabled[i][0]" autocomplete="off">
                     </div>
                 </div>
-                <div class="s4_game-card flex column space-around wrap">
+                <div style="grid-row-gap: 0!important;" class="s4_game-card flex column space-around wrap">
                     <p>Самое важное в структуре:
                         <span style="position:relative;">
                             <span (click)="showHint(i*4)" class="rounded-icon">❔</span>
@@ -37,6 +37,7 @@
                             </div>
                         </span>
                     </p>
+                    <p style="font-size: .5em!important; line-height: 100%; margin-bottom: 20px;">(вспомогательный глагол)</p>
                     <div class="flex row1 space-around">
                         <input [id]="'structure'+time" autocomplete="off" placeholder="Введите самое важное в структуре" [disabled]="this.disabled[i][1]">
                     </div>
